@@ -1,8 +1,5 @@
-Guerrilla.NET Demos
-===========
-
-London, Fall 2014
-------------------
+Guerrilla.NET Demos - London, Fall 2014
+--------------
 
 **Instructors**
 
