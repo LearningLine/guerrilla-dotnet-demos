@@ -16,6 +16,7 @@ namespace Looping
             for (int i = 0; i < 2; i++)
             {
                 ForeachArrayOfInts(values);
+                ForeachArrayOfIntsMechanics(values);
                
                 Console.WriteLine();
             }
@@ -32,6 +33,28 @@ namespace Looping
             foreach (int value in values)
             {
                 total += value;
+            }
+
+            timer.Stop();
+
+            Console.WriteLine("Total elapsed {0}", timer.Elapsed);
+        }
+
+        private static void ForeachArrayOfIntsMechanics(int[] values)
+        {
+            Stopwatch timer = Stopwatch.StartNew();
+            timer.Stop();
+            timer.Start();
+            int total = 0;
+
+            IEnumerable<int> enumerable = values;
+
+            IEnumerator<int> enumerator = enumerable.GetEnumerator();
+
+            while (enumerator.MoveNext())
+            {
+                int val = enumerator.Current;
+                total += val;
             }
 
             timer.Stop();
