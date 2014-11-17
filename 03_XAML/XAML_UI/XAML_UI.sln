@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFApi", "WPFApi\WPFApi.csproj", "{BEE6A852-26C4-423C-AB1E-C4238AF6886B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XAMLApi", "XAMLApi\XAMLApi.csproj", "{59A4166C-114B-4749-B822-B31B45369A99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFandXAML", "WPFandXAML\WPFandXAML.csproj", "{8CE6E073-7C98-4B0A-A5AF-4C1A8327E417}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEE6A852-26C4-423C-AB1E-C4238AF6886B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEE6A852-26C4-423C-AB1E-C4238AF6886B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEE6A852-26C4-423C-AB1E-C4238AF6886B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEE6A852-26C4-423C-AB1E-C4238AF6886B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59A4166C-114B-4749-B822-B31B45369A99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A4166C-114B-4749-B822-B31B45369A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A4166C-114B-4749-B822-B31B45369A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A4166C-114B-4749-B822-B31B45369A99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE6E073-7C98-4B0A-A5AF-4C1A8327E417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE6E073-7C98-4B0A-A5AF-4C1A8327E417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE6E073-7C98-4B0A-A5AF-4C1A8327E417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE6E073-7C98-4B0A-A5AF-4C1A8327E417}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

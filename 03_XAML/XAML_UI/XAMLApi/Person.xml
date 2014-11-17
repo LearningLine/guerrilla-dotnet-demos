@@ -1,0 +1,2 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Person xmlns="clr-namespace:XAMLApi;assembly=XAMLApi" Name="Matt" Age="18"/>

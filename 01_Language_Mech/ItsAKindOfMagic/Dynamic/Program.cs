@@ -17,19 +17,81 @@ namespace Dynamic
 
     public interface IDynamicInvoke<T>
     {
-       T Invoke(object target , params object[] args);
+        T Invoke(object target, params object[] args);
     }
 
+    public class SudoDynamic<T> : IDynamicInvoke<T>
 
-    
+    {
+          Dictionary<Type,FastInvoke>  methodCache = new Dictionary<Type, FastInvoke>();
+        private readonly string _method;
+
+        public SudoDynamic(string method)
+        {
+            _method = method;
+        }
+
+        public T Invoke(object target, params object[] args)
+        {
+            Type targetType = target.GetType();
+            FastInvoke methodToInvoke = null;
+
+            if (!methodCache.TryGetValue(targetType,out methodToInvoke))
+            {
+                 methodToInvoke = new FastInvoke(targetType,_method);
+                methodCache[targetType] = methodToInvoke;
+            }
+            
+
+            return (T)methodToInvoke.ExecuteDelegate(target, args);
+        }
+    }
+
+public class ReflectionDynamic<T> : IDynamicInvoke<T>
+    {
+        Dictionary<Type,MethodInfo>  methodCache = new Dictionary<Type, MethodInfo>();
+        private readonly string _method;
+
+        public ReflectionDynamic(string method)
+        {
+            _method = method;
+        }
+
+        public T Invoke(object target, params object[] args)
+        {
+            Type targetType = target.GetType();
+            MethodInfo methodToInvoke = null;
+
+            if (!methodCache.TryGetValue(targetType,out methodToInvoke))
+            {
+                 methodToInvoke = targetType.GetMethod(_method);
+                methodCache[targetType] = methodToInvoke;
+            }
+            
+
+            return (T)methodToInvoke.Invoke(target, args);
+        }
+    }
+
 
     class Program
     {
         static void Main(string[] args)
         {
-
             var animals = new object[] { new Dog(), new Duck(), new Sheep() };
 
+         
+          //  SimpleDynamic();
+
+            DynamicInvokers(animals);
+
+            PureDynamic(animals);
+
+            InterfaceInvokers(animals);
+        }
+
+        private static void SimpleDynamic()
+        {
             dynamic i = 5;
             i++;
             Console.WriteLine(i);
@@ -37,7 +99,7 @@ namespace Dynamic
             i = "hello";
             Console.WriteLine(i.ToUpper());
 
-       //     i.Speak();
+            //     i.Speak();
 
             dynamic expando = new ExpandoObject();
 
@@ -45,12 +107,6 @@ namespace Dynamic
             expando.IsSexy = false;
 
             Console.WriteLine(expando.Name);
-
-            //DynamicInvokers(animals);
-
-            //PureDynamic(animals);
-
-            //InterfaceInvokers(animals);
         }
 
         private static void PureDynamic(object[] animals)
@@ -92,7 +148,8 @@ namespace Dynamic
         {
             var dynamicInvokers = new IDynamicInvoke<object>[]
                                       {
-                                       
+                                        new ReflectionDynamic<object>("Nop"), 
+                                        new SudoDynamic<object>("Nop"), 
                                       };
 
             Stopwatch timer;

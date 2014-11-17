@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Company xmlns="clr-namespace:XAMLApi;assembly=XAMLApi" Name="I'll leave it up to you">
+  <Company.Owner>
+    <Person Name="Matt" Age="{RandomAge Min=14, Max=24}"/>
+  </Company.Owner>
+
+  <!--<Company.Employees>-->
+    <Person Name="Anthony" Age="23" Company.EmployeeId="1"/>
+    <Person Name="Colin" Age="33" Company.EmployeeId="4"/>
+    <Person Name="Yinli" Age="21" Company.EmployeeId="34"/>
+  <!--</Company.Employees>-->
+</Company>
+
+<!--<Window>
+    <Canvas>
+        <Button Canvas.Top="200" Canvas.Left="100"/>
+        <Button/>
+    </Canvas>
+</Window>-->
