@@ -1,0 +1,12 @@
+1) Events
+
+2) loops
+
+3) iterators
+	Do Primes
+	
+
+4) Do Fibs
+
+
+5) 
