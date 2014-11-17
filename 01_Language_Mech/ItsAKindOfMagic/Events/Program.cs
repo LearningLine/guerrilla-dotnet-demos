@@ -13,7 +13,8 @@ namespace Events
         {
             var clock = new Clock();
 
-           clock.Tick += PrintDot;
+            clock.Tick += PrintDot;
+            clock.Tick += PrintStar;
 
        
             Task.Factory.StartNew(clock.Run);
@@ -24,6 +25,11 @@ namespace Events
         private static void PrintDot(object sender, EventArgs e)
         {
             Console.Write(".");
+        }
+
+        private static void PrintStar(object sender, EventArgs e)
+        {
+            Console.Write("*");
         }
 
        

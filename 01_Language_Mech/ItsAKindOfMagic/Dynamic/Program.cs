@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 using System.Diagnostics;
@@ -29,11 +30,27 @@ namespace Dynamic
 
             var animals = new object[] { new Dog(), new Duck(), new Sheep() };
 
-            DynamicInvokers(animals);
+            dynamic i = 5;
+            i++;
+            Console.WriteLine(i);
 
-            PureDynamic(animals);
+            i = "hello";
+            Console.WriteLine(i.ToUpper());
 
-            InterfaceInvokers(animals);
+       //     i.Speak();
+
+            dynamic expando = new ExpandoObject();
+
+            expando.Name = "Rich";
+            expando.IsSexy = false;
+
+            Console.WriteLine(expando.Name);
+
+            //DynamicInvokers(animals);
+
+            //PureDynamic(animals);
+
+            //InterfaceInvokers(animals);
         }
 
         private static void PureDynamic(object[] animals)
