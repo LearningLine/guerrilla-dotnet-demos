@@ -11,5 +11,8 @@ EF
 
 * [LINQPad](http://www.linqpad.net/)
 
+WPF
+
+* [Mark Smith's MVVM Helpers](https://mvvmhelpers.codeplex.com/)
 
 
