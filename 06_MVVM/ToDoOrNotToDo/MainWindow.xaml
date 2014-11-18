@@ -1,0 +1,35 @@
+﻿<Window x:Class="ToDoOrNotToDo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:toDoOrNotToDo="clr-namespace:ToDoOrNotToDo"
+        xmlns:viewModels="clr-namespace:ToDoOrNotToDo.ViewModels"
+        Title="MainWindow" Height="350" Width="525" FontSize="20">
+    <Window.Resources>
+        <viewModels:ToDoItemViewModel x:Key="todo" Title="Get Lunch" Priority="3"/>
+        <toDoOrNotToDo:NumberToBrushConverter x:Key="PriorityBrushConverter">
+            <toDoOrNotToDo:NumberToBrushConverter.BrushMap>
+                <toDoOrNotToDo:NumberBrush Number="1" Brush="Blue"/>
+                <toDoOrNotToDo:NumberBrush Number="2" Brush="Green"/>
+                <toDoOrNotToDo:NumberBrush Number="3" Brush="Red"/>
+            </toDoOrNotToDo:NumberToBrushConverter.BrushMap>
+        </toDoOrNotToDo:NumberToBrushConverter>
+    </Window.Resources>
+    <DockPanel>
+        <Slider Minimum="0.5" Maximum="3" Width="100" Value="1" DockPanel.Dock="Top" x:Name="zoomer"/>
+    <!--<StackPanel DataContext="{StaticResource todo}">-->
+        <StackPanel>
+        <StackPanel.LayoutTransform>
+                <ScaleTransform ScaleX="{Binding ElementName=zoomer, Path=Value}" ScaleY="{Binding ElementName=zoomer, Path=Value}"/>
+        </StackPanel.LayoutTransform>
+        <TextBlock Text="Title"/>
+        <TextBox x:Name="TitleTextBox" Text="{Binding Title}"/>
+        <TextBlock Text="Priority"/>
+        <StackPanel Orientation="Horizontal">
+            <Slider Minimum="1" Maximum="3" Width="50" HorizontalAlignment="Left" x:Name="PrioritySlider"
+                    Value="{Binding Priority}"/>
+            <TextBlock x:Name="PriorityBlock" Text="{Binding PriorityAsString}" 
+                       Foreground="{Binding Priority, Converter={StaticResource PriorityBrushConverter}}"/>
+        </StackPanel>
+    </StackPanel>
+    </DockPanel>
+</Window>
