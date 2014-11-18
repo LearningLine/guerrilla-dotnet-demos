@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ef_data.Album>
+@{
+	ViewBag.Title = "Albums in " + ViewBag.Genre;
+}
+<h2>@ViewBag.Title.</h2>
+
+<div class="albums">
+	@foreach (var a in Model)
+	{
+		<div class="album">
+			<h3>@a.Title</h3>
+			<div>by @a.Artist.Name</div>
+		</div>
+	}
+</div>
