@@ -218,9 +218,17 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EFRepository\EFRepository.csproj">
+      <Project>{8B25AE9C-64D4-42D6-80A3-E12A57110286}</Project>
+      <Name>EFRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ef_data\data.csproj">
       <Project>{ac97894f-1960-4b2a-ac30-63c2c51ca72b}</Project>
       <Name>data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{475902ED-A81D-42CF-9E98-DDACFB3A596A}</Project>
+      <Name>Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
