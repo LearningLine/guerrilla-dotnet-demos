@@ -7,6 +7,8 @@ Guerrilla.NET Demos - London, Fall 2014
 * Andy Clymer
 * Michael Kennedy
 
+[**See our LINKS file here for shared items**](links.md).
+
 Hi, welcome to our demos repository for [Guerrilla.NET](https://www.develop.com/training-course/guerrilla-net) 
 from DevelopMentor. 
 
