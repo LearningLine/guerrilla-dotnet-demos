@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ef_data.Genre>
+@{
+	ViewBag.Title = "Chinook Music Store";
+}
+
+<div class="jumbotron" style="background-color: orange">
+	<h1>Genres</h1>
+	<p class="lead">Put yourself in the mood by picking a genre below and browsing some music.</p>
+</div>
+
+<div>
+	<h2>Genres</h2>
+	@foreach (var g in Model)
+	{
+		<div class="genre">
+			<span
+				style="display: inline-block; min-width: 200px; font-size: 1.5em; margin-bottom: 20px;"
+				  >@g.Name</span> <a href="/home/genre/@(g.GenreId)"
+									class="btn btn-success" style="min-width: 200px;">Browse @g.Name</a>
+ 		</div>	
+	}
+</div>

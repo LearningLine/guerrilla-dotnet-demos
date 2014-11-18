@@ -5,9 +5,11 @@
 
 
 .category {
+	margin-top: 10px;
     display: inline-block;
     width: 200px;
     height: 250px;
+	text-align: center;
 }
 
 .title {
