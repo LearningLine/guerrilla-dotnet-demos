@@ -1,0 +1,33 @@
+﻿@model WebBookStore.ViewModels.AddBookViewModel
+
+@{
+    ViewBag.Title = "AddBook";
+}
+
+<h2>AddBook</h2>
+
+@using (Html.BeginForm()) {
+    
+    @Html.ValidationSummary()
+    
+    <div>
+        Name:@Html.TextBoxFor(model => model.Name,
+                 new { @class = "form-control" , placeholder="Book Name" })
+
+    </div>
+    
+    <div>
+        Price :$@Html.TextBoxFor(model => model.Price,
+                    new { @class = "form-control" , placeholder="Book Price" })
+
+    </div>
+    
+     <div>
+        Image Url:@Html.TextBoxFor(model => model.ImageUrl,
+                 new { @class = "form-control" , placeholder="Image Url" })
+
+    </div>
+    
+    <button class="btn btn-danger" >Create Book</button>
+    
+}

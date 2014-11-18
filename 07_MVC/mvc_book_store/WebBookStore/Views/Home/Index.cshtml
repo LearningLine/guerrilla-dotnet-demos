@@ -1,0 +1,20 @@
+﻿@using data_core
+@model  IEnumerable<data_core.Category>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="main">
+    @foreach (Category category in Model)
+    {
+        <div class="category">
+            <a href="/Books/Category/@category.Id">
+                <img src="@category.ImageUrl" />
+            </a>
+            
+            <div class="title">
+                <a href="/Books/Category/@category.Id">@category.Name</a>
+            </div>
+        </div>
+    }
+</div>

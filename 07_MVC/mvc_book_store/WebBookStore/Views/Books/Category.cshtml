@@ -1,0 +1,19 @@
+﻿@using Amazoon.Core.Models
+@model System.Collections.Generic.IEnumerable<Amazoon.Core.Models.Book>
+
+@{
+
+}
+
+@foreach (Book book in Model)
+{
+    <div class="category">
+        <a href="/Books/Category/@book.Id">
+            <img src="@book.ImageUrl" />
+        </a>
+
+        <div class="title">
+            <a href="/Books/Category/@book.Id">@book.Name</a>
+        </div>
+    </div>
+}

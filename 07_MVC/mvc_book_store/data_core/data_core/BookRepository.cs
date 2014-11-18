@@ -12,7 +12,7 @@ namespace data_core
 			{
 				Id = 1,
 				Name = "Programming",
-				ImageUrl = "http://www.securitygeneration.com/wp-content/gallery/random/lolcat-internets.jpg"
+				ImageUrl = "http://cdn1.smosh.com/sites/default/files/legacy.images/smosh-pit/122010/lolcat-link.jpg"
 			},
 			new Category
 			{
