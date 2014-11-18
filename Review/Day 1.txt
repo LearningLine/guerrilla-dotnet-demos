@@ -1,0 +1,364 @@
+Language Mechanics
+------------------
+C#1 foreach,event 
+	event keyword
+		Creates private delegate backing store
+		Creates methods for subscribe/unsubscribe
+		Subscribe/Unsubscribe thread safe
+		Meta Data, stated this type has an event
+		
+	public event EventHandler someEvent
+
+
+   foreach(var person in people)
+	{
+
+	}
+
+	IEnumerator<Person> iterator = people.GetEnumerator();
+	try
+	{
+		while(iterator.MoveNext() )
+		{
+			Person p = iterator.Current;
+
+		}
+	}
+	finally
+	{
+		iterator.Dispose();
+	}
+
+	** if foreach on an array, turns to a for loop **
+		
+
+C#2 anonymous methods, iterator methods
+
+Creating a collection of items that is enumerable, could be done via standard collection types. But that batches.  possibly better to stream.
+
+IEnumerable<T>,IEnumerator<T> provides streaming api
+
+public IEnumerable<int> Range(int start,int end)
+{
+	for( ; start < end; start++ )
+	{
+		yield return start;
+	}
+}
+
+Compiler turns this into a class that Implements IEnumerable<int> and IEnumerator<int>
+
+public IEnumerable<int> Range(int start,int end,
+			Func<int,bool> condition)
+{
+	for( ; start < end; start++ )
+	{
+		if( condition(start)
+			yield return start;
+	}
+}
+
+Anonymous method via lamda,
+Range(10,100,i => i%2 == 0 );
+Compile creates a method
+
+private static bool SomeAnonymousMethod(int i)
+{
+	return i%2 == 0 ;
+}
+Range(10,100,SomeAnonymousMethod);
+
+int total=0;
+Range(10,100,i => total+=i);
+
+Touching local varaible inside the anonymous method means compiler
+creates a closure.  A new class that contains the variable
+
+public class Closure
+{
+	public int total;
+	public void AnonMethod(int val)
+	{
+		total+=val;
+	}
+}
+
+Closure closure = new Closure();
+closure.total = 0;
+Range(10,100,closure.AnonMethod);
+Console.WriteLine(closure.total);
+
+
+C#3 extension methods, 
+
+Extension methods, allow extending a type you can't author.  But also for extending interfaces, has large reach.
+
+Extension methods are
+		static methods
+		inside a static class
+		first parameter is type to extend, with this prefix
+		To access them must be in same namespace
+			or using namespace
+
+public static class Utils
+{
+	public static void Foreach<T>(this IEnumerable<T>source,
+				Action<T> action)
+	{
+
+	}
+}
+
+Anonymous types,
+	var point = new { X= 1 , Y = 1};
+	
+	Compiler creates type with two readonly properties X,Y
+		 creates ToString,GetHashCode,Equals
+
+	Var infers type
+
+LINQ, extension methods built around IEnumerable<T> and IQueryable<T>.
+
+Dynamic,  allows interoping with dynamic environments is javascript.  useful for serializing/deserializing objects from environments that don't have type
+
+dynamic i = 5;
+i="five";
+
+EF
+--
+	Object
+	Relational
+	Mapper
+
+Developers use objects
+Databases uses tables
+
+Shape missmatch.  We DON't want to write tedious code to map from tables to objects.  
+
+Two modes 
+	CodeFirst
+	Edmx
+
+Edmx file is an xml file that defines
+
+	Conceptional ( defines the shape of your classes )
+	Storage ( defines the shape of the database, schema)
+	Mapper	( Knows how to map from one set of shapes to another )
+
+For EF to work we need classes (POCO) that are the same shape as the conceptional model.
+
+	public class MyContext : DbContext
+	{
+		DbSet<Person> People {get;set;
+	}
+
+A DbSet per entity type in the conceptional model
+
+	using(MyContext ctx = new MyContext() )
+	{
+		IQueryable<Person> tallPeople =
+		 from person in people
+		 where person.Height > 2m
+		 select person;
+
+		// Database not hit yet
+
+		// now hits the database
+		foreach(Person giant in tallPeople)
+		{
+			Console.WriteLine(giant);
+		}
+	}
+
+	Query is turned into an Expression tree, and compiled into
+	SQL when foreach is executed.
+
+	Navigation, via references and collections.  Hides foreign keys
+
+		Eager loading
+		Lazy loading
+		Explicit loading
+
+
+	Lazy loading sucks, use eager or explicit.
+
+	// One round trip to database
+	foreach(Person p in people.Include("Children"))
+	{
+
+	}
+
+	using System.Data.Entity; /* Allows use of lambda include */
+	foreach(Person p in people.Include(p => p.Children))	
+
+
+	Updates are done by calling SaveChanges on the context
+		o Creates a transaction
+		o Updates item, if it fails transaction rollsback
+		o commit
+
+	MANY ROUNDTRIPS
+
+XAML
+----
+	The main architecture components for WPF
+
+		o Application
+		o Window/User Control
+		o Controls ( Button, Slider, Checkbox )
+		o Shapes
+
+Responsibility of the Application class is to processing Windows Messages.
+
+	Application app = new Application();
+
+	app.Run();
+
+The Window is a high level container, has a HWND.
+	All other components are drawn using DirectX, enable GPU
+	Painters composition model
+	
+	Can only have a single piece of content, resulting
+	in all windows containing a single piece of content
+	that is a layout manager
+
+	Window w = new Window();
+	
+	w.Content = new StackPanel();
+		    // new DockPanel();
+		    // new Canvas();
+		    // new Grid();
+		    // new WrapPanel();
+
+	Layout managers may need info to help layout its children.  Dependency Properties are declared by the layout manager and then attached to children
+
+	Canvas.TopProperty
+	Grid.ColumnProperty
+
+	Ellipse e = new Ellipse();
+	e.SetValue(Canvas.TopProperty,100.0);
+
+	Prefer
+
+	Canvas.SetTop(e,100);
+
+XAML, Extensible Application Markup Language
+
+XAML, is in essence a language for creating object trees.  That is a very good fit to UI.  
+	Window
+		 Canvas
+			 Ellipse
+			 Rectangle
+
+<Window Title="My Cool Window, Simple properties">
+	<Window.Background>
+		<LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+		
+		</LinearGradientBrush>
+	</Window.Background>
+
+	<Window.Content> <!-- not neccessary as Content is default property see below-->
+		<Canvas>
+			<Ellipse Canvas.Left="100">
+			<Rectangle Canvas.Left="{ImFeelingLucky}">
+		</Canvas>
+	</Window.Content>
+
+
+	public class ImFeelingLucky : MarkupExtension
+	{
+		public object ProvideValue()
+		{
+			return new Random().NextDouble() * 1000;
+		}
+	}
+		    
+Unit Testing
+------------
+
+Automated unit testing allows us to test everytime we compile, and virtually no cost.  Gives us confidence that we are moving forward and not breaking stuff.
+
+Tests provides
+		Confidence
+		Refactoring with confidence
+		Documentation, Runable spec
+		
+Testing frameworks
+		MSTest
+		Nunit
+		Xunit
+		...
+
+Provide automation framework, you write test methods, it finds them and executes them.
+
+[TestClass]
+[TestFixture]
+public class ComponentUnderTestTests
+{
+
+	[TestMethod] // MS Test
+	[Test] // Nunit
+	[Fact] // Xunit
+
+	[ExpectedException(typeof(ArgumentException)] // SUCKS, Prefer explict check
+
+	public void MethodUnderTest_PreConditionsActions_ShouldGiveThisOutcome()
+	{
+		// Arrange
+			Create Sut
+			
+		// Act
+
+			Calling functionality on the SUT
+
+			try {  ... ; Assert.Fail();} catch {} Assert.IsTrue(true);
+
+			//NUnit Assert.Throws<ArgumentException>( () => ... );
+			
+
+		// Assert
+
+		Verify outcomes		
+	}	
+}
+
+
+Write the Test before the code
+	Write test, run test it should fail, verify it fails as expected
+	Write the smallest amount of code to pass the test
+	Test re-run goes green.
+	Consider refactoring the code to make it better
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
