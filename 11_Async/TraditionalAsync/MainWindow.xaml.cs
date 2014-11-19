@@ -28,14 +28,21 @@ namespace TraditionalAsync
             //var model = new ViewModels.PictureTransformer(System.IO.Path.GetFullPath(@"..\..\..\Images"));
             //var view = new Views.PickImageView();
 
-            //var model = new ViewModels.AllPicturesTransform(System.IO.Path.GetFullPath(@"..\..\..\Images"));
-            //var view = new Views.AllPicturesView();
+            var model = new ViewModels.AllPicturesTransform(System.IO.Path.GetFullPath(@"..\..\..\Images"));
+            var view = new Views.AllPicturesView();
 
-            var model = new ViewModels.PictureSearch();
-            var view = new Views.PictureSearchView();
+            //var model = new ViewModels.PictureSearch();
+            //var view = new Views.PictureSearchView();
 
             DataContext = model;
             Content = view;
         }
     }
 }
+
+
+
+
+
+
+

@@ -15,7 +15,8 @@ namespace Continuations
         {
             PrintThreadPoolUsage("Main");
 
-            Task.Run(() => DisplayClock());
+            DisplayClock();
+            //Task.Run(() => DisplayClock());
 
            while (true)
            {
@@ -24,14 +25,16 @@ namespace Continuations
            }
         }
 
-        public static  void DisplayClock()
+        public async static void DisplayClock()
         {
             Console.WriteLine("Running clock");
            while (true)
            {
-               Thread.Sleep(500);
+               //Thread.Sleep(500);
+               await Task.Delay(500);
                Console.WriteLine("Tick");
-               Thread.Sleep(500);
+               //Thread.Sleep(500);
+               await Task.Delay(500);
                Console.WriteLine("Tock");
            }
         }

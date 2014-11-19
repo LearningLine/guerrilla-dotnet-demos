@@ -26,8 +26,10 @@ namespace ConfigureAwaitGotcha
             InitializeComponent();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
+            await Task.FromResult(1).ConfigureAwait(false);
+            //await Task.Delay(2000).ConfigureAwait(continueOnCapturedContext: false);
             ResulTextBlock.Text = CreatePunchLine();
         }
 
@@ -53,3 +55,9 @@ namespace ConfigureAwaitGotcha
         }
     }
 }
+
+
+
+
+
+

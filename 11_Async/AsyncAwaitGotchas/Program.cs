@@ -21,7 +21,7 @@ namespace AsyncAwaitGotchas
             // GotchaOne();
             //GotchaTwo();
             // GotchaThree();
-            // GotchaFour().Wait();
+             GotchaFour().Wait();
         }
 
         private static async Task  GotchaFour()
@@ -30,7 +30,8 @@ namespace AsyncAwaitGotchas
 
             try
             {
-                processFileAsync = ProcessFilesAsync(@"C:\users\andy");
+                processFileAsync = ProcessFilesAsync(@"C:\users\itr");
+                
                 await processFileAsync;
             }
             catch (AggregateException errors)
@@ -67,15 +68,24 @@ namespace AsyncAwaitGotchas
                     new Request() {Uri = new Uri("http://www.cia.gov")}
                 };
 
-            requests.ForEach(request =>
+
+            //requests.ForEach(async request =>
+            //{
+            //    var client = new WebClient();
+            //    Console.WriteLine("A: Downloading {0}", request.Uri);
+            //    request.Content = await client.DownloadDataTaskAsync(request.Uri);
+            //    Console.WriteLine("Z: Downloaded {0}", request.Uri);
+            //});
+
+            var tasks = requests.Select(async request =>
             {
                 var client = new WebClient();
-                Console.WriteLine("Downloading {0}", request.Uri);
-                request.Content = client.DownloadData(request.Uri);
-                Console.WriteLine("Downloaded {0}", request.Uri);
-            });
+                Console.WriteLine("A: Downloading {0}", request.Uri);
+                request.Content = await client.DownloadDataTaskAsync(request.Uri);
+                Console.WriteLine("Z: Downloaded {0}", request.Uri);
+            }).ToArray();
 
-          
+            Task.WaitAll(tasks);
 
             Console.WriteLine("All done..??");
 

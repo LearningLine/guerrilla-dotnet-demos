@@ -61,6 +61,7 @@
     <Compile Include="ViewModels\AllPicturesTransform.cs" />
     <Compile Include="ViewModels\PictureSearch.cs" />
     <Compile Include="ViewModels\PictureTransformer.cs" />
+    <Compile Include="ViewModels\TaskUtils.cs" />
     <Compile Include="Views\AllPicturesView.xaml.cs">
       <DependentUpon>AllPicturesView.xaml</DependentUpon>
     </Compile>

@@ -14,17 +14,17 @@ namespace Server
     public interface IDo
     {
         [OperationContract]
-        int DoThis();
+        Task<int> DoThis();
     }
 
 
     public class DoService : IDo
     {
-        public int DoThis()
+        public async Task<int> DoThis()
         {
             PrintThreadPoolUsage("DoThis start");
 
-            Thread.Sleep(5000);
+            await Task.Delay(5000);//Thread.Sleep(5000));
 
             return 42;
 

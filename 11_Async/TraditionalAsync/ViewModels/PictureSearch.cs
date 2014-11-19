@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
@@ -28,14 +29,7 @@ namespace TraditionalAsync.ViewModels
 
             Uri termUri = new Uri(searchTerm);
 
-            string searchResults = await client.DownloadStringTaskAsync(searchTerm);
-
-            List<Uri> results = searchResults.Split('"')
-                .Select(p => p.ToLower())
-                .Where(p => p.EndsWith("jpg") || p.EndsWith("png"))
-                .Select(p => new Uri(p, UriKind.RelativeOrAbsolute))
-                .Select(u => u.IsAbsoluteUri ? u : new Uri(termUri, u))
-                .ToList();
+            var results = await GetImagesAsync(searchTerm, client, termUri);
 
             foreach (Uri uri in results)
             {
@@ -44,6 +38,21 @@ namespace TraditionalAsync.ViewModels
                 Images.Add(img);
             }
 
+        }
+
+        private static async Task<List<Uri>> GetImagesAsync(string searchTerm, WebClient client, Uri termUri)
+        {
+            string searchResults = await client.DownloadStringTaskAsync(searchTerm)
+                .ConfigureAwait(continueOnCapturedContext: false);
+
+            List<Uri> results = searchResults.Split('"')
+                .Select(p => p.ToLower())
+                .Where(p => p.EndsWith("jpg") || p.EndsWith("png"))
+                .Select(p => new Uri(p, UriKind.RelativeOrAbsolute))
+                .Select(u => u.IsAbsoluteUri ? u : new Uri(termUri, u))
+                .ToList();
+
+            return results;
         }
 
 
