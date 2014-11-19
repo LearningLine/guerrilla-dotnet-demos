@@ -1,0 +1,325 @@
+EF Repository
+
+Using EF directly from our application code, means we can't unit test.  Also means we are tied to EF, and if we want to introduce another ORM we end up re-writing lots of code, scattered all over the app.
+
+Solution, provides an anti-corruption layer to code against.  This layer provides api that reflects the applications data needs.  The implementation is ORM specific
+
+For EF, we need to wrap up
+	DbContext
+	DbSet<T>
+
+First step, provide an abstraction for the sets
+
+IProductsRepository
+ICustomerRepository
+
+...
+
+Prefer IRepository<T> which can provide common functionality
+
+public interface IRepository<T>
+{
+	IEnumerable<T> All {get;}
+	Add(T newItem);
+
+
+}
+
+// Derived interface, provides entity specific queries
+
+public interface IProductRepository : IRepository<Product>
+{
+	IEnumerable<Product> FindProductsByPriceRange(decimal start, decimal end);
+
+}
+
+WARNING.....RELIGOUS DEBATE
+	*** DONT USE IQUERYABLE<T> *****
+END WARNING
+
+Code may need to use many repositories, and may need to update multiple items from many repositories as part of a single business transaction.  The Unit Of Work pattern, gives us that it exposes many repositories, and provides a single save/commit that co-ordinates with all the repositories to co-ordinate a transactional commit.
+
+public IUnitOfWork : IDisposable
+{
+	
+	IProductRepository Products {get;}
+	ICustomerRepository Customers {get;}
+
+	void Commit();
+}
+
+using(IUnitOfWork uw = new UnitOfWork())
+{
+	// Get Data
+	Product product = uw.Products.All.First();
+	// Make changes
+	product.Price *= 1.30;
+	// Leave the block with out calling
+	// commit changes not committed
+
+	uw.Commit();
+}
+
+public interface IUnitOfWorkFactory
+{
+	IUnitOfWork Create();
+}
+
+IUnitOfWorkFactory uwf = new EFUnitOfWorkFactory();
+
+Inject uwf into code
+
+using(IUnitOfWork uw = uwf.Create())
+{
+	
+}
+
+Data Binding MVVM
+-----------------
+Model-View-ViewModel
+
+Separate visualization from UI logic.  Allows testing of ui logic as part of a automated test framework.
+
+To implement this separation of concern we use DataBinding.
+A DataBinding allows the defining of a relationship between application data and ui visualization components.
+
+
+A binding comprises of
+
+	Source			Application Object
+	Path			Property on the Source Object
+	Target 			UI Control, and Dependency Property
+
+The binding's can be defined in code, but that virtually never happens.  We do it in XAML
+
+public class Address
+{
+	public string City {get;set;}
+}
+
+<Windows.Resources>
+	<Address City="London" x:Key="testAddress"/>
+</Window.Resources>
+
+<TextBox Text="{Binding Source={StaticResource testAddress},Path=City}"/>
+
+...
+DataContext in code behind, 
+
+this.DataContext = new Address();
+...
+<TextBox Text="{Binding City}"/>
+Changes move from the UI to source on 
+	Lost of Focus
+	Property Changed
+	Explcit
+
+WPF decides based on control, textbox lost focus, checkbox property changed.
+
+Updates from the Source, don't automatically propergate.  To make source object changes propergate, we need to implement 
+
+
+public class Address : INotifyPropertyChanged
+{
+	// Null Pattern
+	public event EventHandler<PropertyChangedEventArgs> PropertyChanged = delegate {};
+
+	public string City {
+		get { return city;}
+		set {
+			city = value;
+			PropertyChanged(this,new PropertyChangedEventArgs("City"))
+		}
+	}
+
+	public void Refesh()
+	{
+	// Update all bindings on source
+		PropertyChanged(this,null);
+	}
+}
+
+Implementing INotifyPropertyChanged all over the code base SUCKS.  So create a baseclass
+
+public class ViewModel : INotifyPropertyChanged
+{
+	...
+}
+
+All objects you wish to databind to derive from ViewModel.
+
+Window wnd = new Window();
+wnd.Content = new MyViewModel();
+...
+Would show ToString() of MyVIewModel()
+
+Use DataTemplate to select the correct view for a given VIewModel
+
+<DataTemplate DataType={x:Type MyViewModel}>
+	... XAML to render the view model
+</DataTemplate>
+
+For actions, WPF has ICommand.  Databind UI actions, buttons to a property exposing an ICommand object.  The ICommand interface has an Execute Method, this is called by the UI when the action happens, e.g. button click
+
+// Adapter pattern
+public class DelegateCommand : ICommand
+{
+	private Action<object> action;
+	public DelegateCommand(Action<object> action)
+	{
+		this.action = action;
+	}
+
+	public void Execute(object arg)
+	{
+		action(arg);
+	}
+}
+
+<ListBox ItemsSource="{Binding Customers">
+
+public class MyViewModel
+{
+	public List<Customer> Customers {get;set;}
+}
+
+If new items are added to the Customers collection, no updates. MUST USE ObservableCollection, then it will update the UI.  As it raises Collection changed event
+
+public class MyViewModel
+{
+	public ObservableCollection<Customer> Customers {get;set;}
+}
+
+
+MVC
+
+Model-View-Controller....Pattern Circa 1980's
+
+Controller, role responsible for 
+	Creating the model
+	Acting on the model
+	Selecting the view
+
+Controllers therefore have a single responsibility to orchestrate the action from web space to application logic.  Controller methods are small, typically 3-5 lines.  If you remove the controller from your app and you loose application logic then the controller is too FAT.
+
+In the web space, the controller takes a HTTP Verb and URL and maps it to a a method.
+
+The Routing table maps from URI to a class and method.  ASP.NET favors convention over configuration.
+
+/Products/List
+
+Will look for a class called ProductsController, and a method called List.
+
+public class ProductsController : Controller
+{
+	
+	public ViewResult List()
+	{
+		// Create model
+
+		// Act on model
+
+		// Select View
+
+		return View("ProductList");
+	}
+}
+
+Views defined using Razor template syntax, @ symbol escape into code.  
+Prefer strongly typed views, to get intelli sense
+
+@model IEnumerable<Product>
+
+<h1> Products </h1>
+
+@foreach(Product product in Model)
+{
+	<span>@product.Name</span>
+}
+
+
+WCF
+-----
+
+Windows Communication Foundation, provides common API for communication
+
+Provides abstractions for Messaging, and implementation.
+
+3 types of message exchange patterns
+	One Way
+	Send and Wait for Reply
+	Duplex
+
+To expose code over the wire we need to define Endpoint
+
+	Address
+	Binding
+	Contract
+
+To define Contract we need to decorate the interface with ServiceContract
+
+[ServiceContract]
+public interface IAccumulate
+{
+	[OperationContract]
+	void Add(int val);
+}
+
+Use DataContract to take control over serialization format.
+
+Binding defines the channel stack, protocols, encoder, transport.  Lots of pre-built ones
+
+	NetTcpBinding
+	BasicHttpBinding
+	NamedPipeBinding
+	PeerBinding
+	WsHttpBinding
+
+NetTcp binding, efficient binary communication with WCF at both ends
+BasicHttpBinding, interop good, efficiency bad.
+
+
+Addres the place I'm listening.
+
+ServiceHost host= new 	ServiceHost(typeof(SomeTypeImplementingAtLeastOneWCFContract));
+
+// As of V4, if you define a base address on service host, it will create
+// default endpoint
+
+	host.AddEndpoint(typeof(ISomeContract),new NetTcpBinding(), "net.tcp://localhost...")
+
+
+// Starts listening
+host.Open();
+
+Client side proxy, can use ChannelFactory<T> to create client side proxies
+
+	
+	var factory = new ChannelFactory<T>(...);
+
+	ISomeInterface proxy = factory.Create();
+
+	proxy.SomeMethodOnTheInterface();
+
+
+Object activation model in WCF is per session.  The question is whats a session, it has many meanings, depends on the transport.
+
+	TCP per client proxy
+	HTTP per call
+	WS Http binding, per client proxy
+
+Use service behaviour to change this InstanceContextMode
+
+
+
+
+
+
+
+
+
+
+
+
+
+
