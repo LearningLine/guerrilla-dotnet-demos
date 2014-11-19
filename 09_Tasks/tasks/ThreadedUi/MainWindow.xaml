@@ -1,0 +1,11 @@
+﻿<Window x:Class="ThreadedUi.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Viewbox>
+        <StackPanel>
+            <Button Name="TheButton" Click="ButtonBase_OnClick">I shall be clicked!</Button>
+            <TextBlock x:Name="ResulTextBlock"></TextBlock>
+        </StackPanel>
+    </Viewbox>
+</Window>

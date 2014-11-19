@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cancelling", "Cancelling\Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParentChild", "ParentChild\ParentChild.csproj", "{C9E5FF10-EB3A-4C68-91A2-2A2666284B0A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chaining", "Chaining\Chaining.csproj", "{E19E70E5-9240-4409-9F2B-0D59F0C6206E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadedUi", "ThreadedUi\ThreadedUi.csproj", "{659AF02E-60ED-4527-9522-D308B24C5031}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{C9E5FF10-EB3A-4C68-91A2-2A2666284B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9E5FF10-EB3A-4C68-91A2-2A2666284B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9E5FF10-EB3A-4C68-91A2-2A2666284B0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E19E70E5-9240-4409-9F2B-0D59F0C6206E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E19E70E5-9240-4409-9F2B-0D59F0C6206E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E19E70E5-9240-4409-9F2B-0D59F0C6206E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E19E70E5-9240-4409-9F2B-0D59F0C6206E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{659AF02E-60ED-4527-9522-D308B24C5031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{659AF02E-60ED-4527-9522-D308B24C5031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{659AF02E-60ED-4527-9522-D308B24C5031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{659AF02E-60ED-4527-9522-D308B24C5031}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
