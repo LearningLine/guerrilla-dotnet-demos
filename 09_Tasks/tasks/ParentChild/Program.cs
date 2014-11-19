@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ParentChild
@@ -9,7 +10,6 @@ namespace ParentChild
     {
         private static void Main(string[] args)
         {
-
             string[] urls =
             {
                 "https://www.develop.com/technicalstaff/details/richard-blewett",
@@ -19,6 +19,30 @@ namespace ParentChild
                 "http://bbc.co.uk"
             };
 
+           // ParentChild(urls);
+            var sw = Stopwatch.StartNew();
+
+            var allDoneEvent = new CountdownEvent(urls.Length);
+           
+                foreach (var url in urls)
+                {
+                    var request = WebRequest.Create(url);
+                    var ioTask = Task.Factory.FromAsync(request.BeginGetResponse(null, null), result =>
+                    {
+                        var resp = request.EndGetResponse(result);
+                        Console.WriteLine("{0}: {1}", request.RequestUri, resp.ContentLength);
+                        allDoneEvent.Signal();
+                    });
+
+                }
+
+            allDoneEvent.Wait();
+            Console.WriteLine(sw.Elapsed);
+
+        }
+
+        private static void ParentChild(string[] urls)
+        {
             var sw = Stopwatch.StartNew();
 
             var downloadTask = Task.Factory.StartNew(() =>
@@ -36,7 +60,7 @@ namespace ParentChild
                     //{
                     //    var resp = request.GetResponse();
                     //    Console.WriteLine("{0}: {1}", request.RequestUri, resp.ContentLength);
-                    //}, TaskCreationOptions.AttachedToParent);
+                    //}, TaskCreationOptions.AttachedToParemnt);
                 }
             });
 
@@ -45,7 +69,7 @@ namespace ParentChild
 
             downloadTask.Wait();
 
-            Console.WriteLine("Done in "+ sw.Elapsed);
+            Console.WriteLine("Done in " + sw.Elapsed);
         }
     }
 }

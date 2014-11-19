@@ -1,0 +1,10 @@
+﻿<Window x:Class="ConfigureAwaitGotcha.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ConfigureAwaitGotcha" Height="550" Width="925" FontSize="36">
+  <StackPanel>
+      <TextBlock Margin="50">Why did the multithreaded chicken cross the road</TextBlock>
+        <Button Click="ButtonBase_OnClick" Margin="50" Padding="10">?</Button>
+      <TextBlock x:Name="ResulTextBlock" Margin="50">NO RESULT</TextBlock>
+  </StackPanel>
+</Window>
