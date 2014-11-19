@@ -7,6 +7,12 @@ ASP.NET Web Tools
 * [Web Essentials for Visual Studio](http://vswebessentials.com/)
 * [LESS File Monitor](http://wearekiss.com/simpless) (only really useful for outside of Visual Studio or if you cannot use VS)
 
+EF
 
+* [LINQPad](http://www.linqpad.net/)
+
+WPF
+
+* [Mark Smith's MVVM Helpers](https://mvvmhelpers.codeplex.com/)
 
 
