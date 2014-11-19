@@ -15,7 +15,8 @@ namespace Continuations
         {
             PrintThreadPoolUsage("Main");
 
-            DisplayClock();
+            DisplayClockMechanics();
+            //DisplayClock();
             //Task.Run(() => DisplayClock());
 
            while (true)
@@ -23,6 +24,11 @@ namespace Continuations
                PrintThreadPoolUsage("While");
                Console.ReadLine();
            }
+        }
+
+        public static void DisplayClockMechanics()
+        {
+            new DisplayClockStateMachine().MoveNext();
         }
 
         public async static void DisplayClock()
@@ -49,4 +55,66 @@ namespace Continuations
         }
 
     }
+
+    internal class DisplayClockStateMachine
+    {
+
+        private int state = 0;
+        public void MoveNext()
+        {
+            start:
+
+            switch (state)
+            {
+                case 0:
+                {
+                    Console.WriteLine("Running clock");
+                    state = 1;
+                    goto start;
+                }
+                case 1:
+                {
+                    var awaiter = Task.Delay(500).GetAwaiter();
+                    state = 2;
+                    if (awaiter.IsCompleted)
+                    {
+                        goto start;
+                    }
+                    awaiter.OnCompleted(MoveNext);
+                }
+                break;
+
+                case 2:
+                {
+                    Console.WriteLine("Tick");
+                    var awaiter = Task.Delay(500).GetAwaiter();
+                    state = 3;
+                    if (awaiter.IsCompleted)
+                    {
+                        goto start;
+                    }
+                    awaiter.OnCompleted(MoveNext);
+                }
+                    break;
+
+                case 3:
+                    {
+                        Console.WriteLine("Tock");
+                        state = 1;
+                       goto start;
+                    }
+                    break;
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
