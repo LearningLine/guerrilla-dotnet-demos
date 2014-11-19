@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhatIsTaskCompletionSource"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{87E8DD78-4F2C-4764-AF0A-7E3579EA715F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcAsync", "MvcAsync\MvcAsync.csproj", "{7418712B-6CFD-4BA1-9263-AA0005DDA219}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +135,16 @@ Global
 		{87E8DD78-4F2C-4764-AF0A-7E3579EA715F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{87E8DD78-4F2C-4764-AF0A-7E3579EA715F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{87E8DD78-4F2C-4764-AF0A-7E3579EA715F}.Release|x86.ActiveCfg = Release|Any CPU
+		{7418712B-6CFD-4BA1-9263-AA0005DDA219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7418712B-6CFD-4BA1-9263-AA0005DDA219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7418712B-6CFD-4BA1-9263-AA0005DDA219}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7418712B-6CFD-4BA1-9263-AA0005DDA219}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7418712B-6CFD-4BA1-9263-AA0005DDA219}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7418712B-6CFD-4BA1-9263-AA0005DDA219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7418712B-6CFD-4BA1-9263-AA0005DDA219}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7418712B-6CFD-4BA1-9263-AA0005DDA219}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7418712B-6CFD-4BA1-9263-AA0005DDA219}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7418712B-6CFD-4BA1-9263-AA0005DDA219}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

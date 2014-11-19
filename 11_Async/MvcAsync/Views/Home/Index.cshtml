@@ -1,0 +1,12 @@
+﻿@model List<author>
+@{
+    ViewBag.Title = "Home Page";
+}
+<h2> All authors in CA</h2>
+
+<div>
+    @foreach (var a in Model)
+    {
+  <div>@a.au_fname @a.au_lname is from @a.city, @a.state</div>
+    }
+</div>

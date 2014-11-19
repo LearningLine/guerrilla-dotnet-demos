@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ChinookModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="authors">
+          <Key>
+            <PropertyRef Name="au_id" />
+          </Key>
+          <Property Name="au_id" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="au_lname" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="au_fname" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="phone" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="40" />
+          <Property Name="city" Type="varchar" MaxLength="20" />
+          <Property Name="state" Type="char" MaxLength="2" />
+          <Property Name="zip" Type="char" MaxLength="5" />
+          <Property Name="contract" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="titleauthor">
+          <Key>
+            <PropertyRef Name="au_id" />
+            <PropertyRef Name="title_id" />
+          </Key>
+          <Property Name="au_id" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="title_id" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="au_ord" Type="tinyint" />
+          <Property Name="royaltyper" Type="int" />
+        </EntityType>
+        <EntityType Name="titles">
+          <Key>
+            <PropertyRef Name="title_id" />
+          </Key>
+          <Property Name="title_id" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="type" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="pub_id" Type="char" MaxLength="4" />
+          <Property Name="price" Type="money" />
+          <Property Name="advance" Type="money" />
+          <Property Name="royalty" Type="int" />
+          <Property Name="ytd_sales" Type="int" />
+          <Property Name="notes" Type="varchar" MaxLength="200" />
+          <Property Name="pubdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__titleauth__au_id__1DE57479">
+          <End Role="authors" Type="Self.authors" Multiplicity="1" />
+          <End Role="titleauthor" Type="Self.titleauthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="au_id" />
+            </Principal>
+            <Dependent Role="titleauthor">
+              <PropertyRef Name="au_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__titleauth__title__1ED998B2">
+          <End Role="titles" Type="Self.titles" Multiplicity="1" />
+          <End Role="titleauthor" Type="Self.titleauthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="titles">
+              <PropertyRef Name="title_id" />
+            </Principal>
+            <Dependent Role="titleauthor">
+              <PropertyRef Name="title_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ChinookModelStoreContainer">
+          <EntitySet Name="authors" EntityType="Self.authors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="titleauthor" EntityType="Self.titleauthor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="titles" EntityType="Self.titles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__titleauth__au_id__1DE57479" Association="Self.FK__titleauth__au_id__1DE57479">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="titleauthor" EntitySet="titleauthor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__titleauth__title__1ED998B2" Association="Self.FK__titleauth__title__1ED998B2">
+            <End Role="titles" EntitySet="titles" />
+            <End Role="titleauthor" EntitySet="titleauthor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ChinookModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="author">
+          <Key>
+            <PropertyRef Name="au_id" />
+          </Key>
+          <Property Name="au_id" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="au_lname" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="au_fname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="zip" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="contract" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="titleauthors" Relationship="Self.FK__titleauth__au_id__1DE57479" FromRole="authors" ToRole="titleauthor" />
+        </EntityType>
+        <EntityType Name="titleauthor">
+          <Key>
+            <PropertyRef Name="au_id" />
+            <PropertyRef Name="title_id" />
+          </Key>
+          <Property Name="au_id" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="title_id" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="au_ord" Type="Byte" />
+          <Property Name="royaltyper" Type="Int32" />
+          <NavigationProperty Name="author" Relationship="Self.FK__titleauth__au_id__1DE57479" FromRole="titleauthor" ToRole="authors" />
+          <NavigationProperty Name="title" Relationship="Self.FK__titleauth__title__1ED998B2" FromRole="titleauthor" ToRole="titles" />
+        </EntityType>
+        <EntityType Name="title">
+          <Key>
+            <PropertyRef Name="title_id" />
+          </Key>
+          <Property Name="title_id" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="title1" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="pub_id" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="advance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="royalty" Type="Int32" />
+          <Property Name="ytd_sales" Type="Int32" />
+          <Property Name="notes" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="pubdate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="titleauthors" Relationship="Self.FK__titleauth__title__1ED998B2" FromRole="titles" ToRole="titleauthor" />
+        </EntityType>
+        <Association Name="FK__titleauth__au_id__1DE57479">
+          <End Role="authors" Type="Self.author" Multiplicity="1" />
+          <End Role="titleauthor" Type="Self.titleauthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="au_id" />
+            </Principal>
+            <Dependent Role="titleauthor">
+              <PropertyRef Name="au_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__titleauth__title__1ED998B2">
+          <End Role="titles" Type="Self.title" Multiplicity="1" />
+          <End Role="titleauthor" Type="Self.titleauthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="titles">
+              <PropertyRef Name="title_id" />
+            </Principal>
+            <Dependent Role="titleauthor">
+              <PropertyRef Name="title_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ChinookEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="authors" EntityType="Self.author" />
+          <EntitySet Name="titleauthors" EntityType="Self.titleauthor" />
+          <EntitySet Name="titles" EntityType="Self.title" />
+          <AssociationSet Name="FK__titleauth__au_id__1DE57479" Association="Self.FK__titleauth__au_id__1DE57479">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="titleauthor" EntitySet="titleauthors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__titleauth__title__1ED998B2" Association="Self.FK__titleauth__title__1ED998B2">
+            <End Role="titles" EntitySet="titles" />
+            <End Role="titleauthor" EntitySet="titleauthors" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ChinookModelStoreContainer" CdmEntityContainer="ChinookEntities">
+          <EntitySetMapping Name="authors">
+            <EntityTypeMapping TypeName="ChinookModel.author">
+              <MappingFragment StoreEntitySet="authors">
+                <ScalarProperty Name="au_id" ColumnName="au_id" />
+                <ScalarProperty Name="au_lname" ColumnName="au_lname" />
+                <ScalarProperty Name="au_fname" ColumnName="au_fname" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="zip" ColumnName="zip" />
+                <ScalarProperty Name="contract" ColumnName="contract" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="titleauthors">
+            <EntityTypeMapping TypeName="ChinookModel.titleauthor">
+              <MappingFragment StoreEntitySet="titleauthor">
+                <ScalarProperty Name="au_id" ColumnName="au_id" />
+                <ScalarProperty Name="title_id" ColumnName="title_id" />
+                <ScalarProperty Name="au_ord" ColumnName="au_ord" />
+                <ScalarProperty Name="royaltyper" ColumnName="royaltyper" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="titles">
+            <EntityTypeMapping TypeName="ChinookModel.title">
+              <MappingFragment StoreEntitySet="titles">
+                <ScalarProperty Name="title_id" ColumnName="title_id" />
+                <ScalarProperty Name="title1" ColumnName="title" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="pub_id" ColumnName="pub_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="advance" ColumnName="advance" />
+                <ScalarProperty Name="royalty" ColumnName="royalty" />
+                <ScalarProperty Name="ytd_sales" ColumnName="ytd_sales" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="pubdate" ColumnName="pubdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
