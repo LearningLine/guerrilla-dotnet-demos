@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hypermedia
 {
@@ -12,8 +8,10 @@ namespace Hypermedia
     {
         [DataMember(Name = "rel")]
         public Relationship Relationship { get; set; }
+
         [DataMember(Name = "uri")]
         public string Uri { get; set; }
+
         [DataMember(Name = "verb")]
         public string Verb { get; set; }
     }
@@ -21,16 +19,11 @@ namespace Hypermedia
     [DataContract(Namespace = "")]
     public enum Relationship
     {
-        [EnumMember(Value = "self")]
-        Self,
-        [EnumMember(Value = "parent")]
-        Parent,
-        [EnumMember(Value = "create")]
-        Create,
-        [EnumMember(Value = "children")]
-        Children,
-        [EnumMember(Value = "target")]
-        Target
+        [EnumMember(Value = "self")] Self,
+        [EnumMember(Value = "parent")] Parent,
+        [EnumMember(Value = "create")] Create,
+        [EnumMember(Value = "children")] Children,
+        [EnumMember(Value = "target")] Target
     }
 
     [DataContract(Namespace = "")]
@@ -40,6 +33,7 @@ namespace Hypermedia
         {
             Links = new List<Link>();
         }
+
         [DataMember(Name = "links")]
         public List<Link> Links { get; private set; }
     }
