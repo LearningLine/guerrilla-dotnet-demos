@@ -25,12 +25,12 @@ namespace MyFFT
             {
                 TimeIt(SequentialVersion);
                 
-                TimeIt(LinqVersion);
+             //   TimeIt(LinqVersion);
              
                 TimeIt(PLinqVersion);
-                   
-                CompareFiles(OUTPUT_FILENAME, LINQ_OUTPUT_FILENAME);
-                CompareFiles(OUTPUT_FILENAME,PLINQ_OUTPUT_FILENAME);
+
+              //  CompareFiles(OUTPUT_FILENAME, LINQ_OUTPUT_FILENAME);
+                CompareFiles(OUTPUT_FILENAME, PLINQ_OUTPUT_FILENAME);
             }
         }
 

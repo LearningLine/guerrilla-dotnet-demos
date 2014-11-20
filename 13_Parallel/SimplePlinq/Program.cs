@@ -32,19 +32,19 @@ namespace PLINQ
         static void Main(string[] args)
         {
             //OddEven();
-            SpellCheck();
+            //SpellCheck();
             //HappySites();
         }
 
         private static void OddEven()
         {
             IEnumerable<int> numbers =
-                   new EnumerableBuffer<int>( Numbers(50000000) );
+                   new EnumerableBuffer<int>( Numbers(50000000) ).ToList();
                
             Console.Write("Filtering..");
             Stopwatch timer = Stopwatch.StartNew();
 
-            var evenNumbers = (from number in numbers
+            var evenNumbers = (from number in numbers.AsParallel()
                                where number % 2 == 0
                                select number).ToArray();
 
@@ -127,7 +127,7 @@ namespace PLINQ
 
 
             Stopwatch timer = Stopwatch.StartNew();
-            var badWords = document
+            var badWords = document.AsParallel()
                 .Select((word, index) => new { Word = word, Index = index })
                 .Where(wi => !words.Contains(wi.Word))
                 .OrderBy(wi => wi.Index)

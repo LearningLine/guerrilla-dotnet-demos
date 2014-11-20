@@ -1,0 +1,16 @@
+﻿<Window x:Class="WpfApplicationHelloWorld.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Window1" Height="300" Width="300">
+    <Canvas>
+        <Rectangle Width="150" Height="150" Cursor="Cross" Stroke="DarkOrange" StrokeThickness="5" Canvas.Left="100">
+            <Canvas.Top>80</Canvas.Top>
+            <Rectangle.Fill>
+                <LinearGradientBrush>
+                    <GradientStop Offset="0" Color="Orange"></GradientStop>
+                    <GradientStop Offset="1" Color="Blue"></GradientStop>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+    </Canvas>
+</Window>
