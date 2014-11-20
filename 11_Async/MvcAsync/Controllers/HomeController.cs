@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,15 +11,15 @@ namespace MvcAsync.Controllers
     public class HomeController : Controller
     {
         ChinookEntities entities = new ChinookEntities();
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            List<author> authors =
+            List<author> authors = await 
                 (from a in entities.authors
                 where a.state == "CA"
                 orderby a.au_lname
                 select a)
                 .Take(10)
-                .ToList();
+                .ToListAsync();
 
             return View(authors);
         }

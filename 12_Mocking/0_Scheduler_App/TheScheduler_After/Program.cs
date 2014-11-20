@@ -10,7 +10,7 @@ namespace TheScheduler
 	{
 		static void Main(string[] args)
 		{
-			SchedulingService svc = new SchedulingService();
+			SchedulingService svc = new SchedulingService(new Logger("logfile.txt"), new RealTimeService());
 
 			svc.AddJob( 1, "some inputs", TimeSpan.FromSeconds(5) );
 			while ( !svc.IsJobFinished( 1 ) )

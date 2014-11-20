@@ -6,7 +6,7 @@ using System.IO;
 
 namespace TheScheduler
 {
-    public class Logger
+    public class Logger : ILogger
     {
 		public string Logfile { get; set; }
 

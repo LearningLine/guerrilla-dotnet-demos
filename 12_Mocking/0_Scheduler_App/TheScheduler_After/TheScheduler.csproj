@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ILogger.cs" />
+    <Compile Include="ITimeService.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
