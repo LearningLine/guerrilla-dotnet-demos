@@ -86,16 +86,20 @@ namespace ImageProcessingApp.ViewModels
             Root = new Folder(path);
             addImage = new DelegateCommand(image => AddImage((FileSystemElement)image));
             TransformedImages = new ObservableCollection<BitmapSource>();
+            imageTransforms.ImageTransformed += (s, e) =>
+            {
+                TransformedImages.Add(e.Result);
+            };
         }
 
         public ObservableCollection<BitmapSource> TransformedImages { get; set; } 
 
         private void AddImage(FileSystemElement image)
         {
-         
-            BitmapSource grayImage = imageTransforms.CreateGrayScaleImage(image.Path);
+            //BitmapSource grayImage = imageTransforms.CreateGrayScaleImage(image.Path);
+            //TransformedImages.Add(grayImage);
 
-            TransformedImages.Add(grayImage);
+            imageTransforms.CreateGrayScaleImageAsync(image.Path);
             return;
         }
 
