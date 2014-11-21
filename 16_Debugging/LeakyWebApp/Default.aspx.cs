@@ -12,11 +12,11 @@ namespace LeakyWebApp
             InterestingStuffIsHere.Instance.SomethingInterestingForPages += Global_SomethingInterestingForPages;
         }
 
-        //public override void Dispose()
-        //{
-        //    InterestingStuffIsHere.Instance.SomethingInterestingForPages -= Global_SomethingInterestingForPages;
-        //    base.Dispose();
-        //}
+		public override void Dispose()
+		{
+			InterestingStuffIsHere.Instance.SomethingInterestingForPages -= Global_SomethingInterestingForPages;
+			base.Dispose();
+		}
 
         void Global_SomethingInterestingForPages(object sender, EventArgs e)
         {
