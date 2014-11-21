@@ -1,0 +1,12 @@
+﻿<Application x:Class="ImageProcessingApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModels="clr-namespace:ImageProcessingApp.ViewModels"
+             xmlns:views="clr-namespace:ImageProcessingApp.Views"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         <DataTemplate DataType="{x:Type viewModels:ImageProcessingViewModel}">
+             <views:ImageProcessingView />
+         </DataTemplate>
+    </Application.Resources>
+</Application>

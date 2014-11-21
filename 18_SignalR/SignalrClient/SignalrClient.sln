@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatty.Web", "Chatty.Web\Chatty.Web.csproj", "{BE5194FB-30F5-47E0-BE6E-360BBA58F9A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalrClient", "SignalrClient\SignalrClient.csproj", "{3E72B999-8730-4E16-A06A-81B641ED4A5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BE5194FB-30F5-47E0-BE6E-360BBA58F9A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE5194FB-30F5-47E0-BE6E-360BBA58F9A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE5194FB-30F5-47E0-BE6E-360BBA58F9A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE5194FB-30F5-47E0-BE6E-360BBA58F9A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E72B999-8730-4E16-A06A-81B641ED4A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E72B999-8730-4E16-A06A-81B641ED4A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E72B999-8730-4E16-A06A-81B641ED4A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E72B999-8730-4E16-A06A-81B641ED4A5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
