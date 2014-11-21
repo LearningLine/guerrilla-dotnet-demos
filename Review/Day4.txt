@@ -1,0 +1,145 @@
+Mocking
+-------
+- Test doubles replace real dependencies with dummies that can be used to drive	  the tests
+	Fakes - NoP implementation of abstraction
+	Stubs - return various forms of data to drive test
+	Spies - Provide insight to the data that was sent to the dependency
+	Mocks - Track interaction over a series of calls - or track that something 	     	hasn't happened
+
+Can build test doubles by hand or use a mocking framework - rely on coding to abstraction
+
+Generally mocking frameworks reduce the amount of code you have to maintain
+
+Many mocking frameworks
+	Moq
+	Rhino
+	MSFT Fakes
+	NSubstitute
+
+
+Parallel
+--------
+Fine grained parallelism allows us to spread algorithm across multiple cores
+	- necessary for multicore processors that are not getting any faster
+
+Ideally the parallel code should look very similar to sequential code. Library support can help this (to some degree)
+
+Parallel.Invoke: Fork and Join (Coarse grained parallelism)
+
+Parallel.For: replaces for loop but only works if order of execution is not 				  important
+
+Parallel.ForEach: allows more control over loops as can provide any IEnumerable
+
+Parallel code should avoid mutable shared state (Thread safety and cache issues)
+
+PLinq: Linq gives us a declarative syntax for functionality - AsParallel provides a ParallelEnumerable with a a Where, Select, etc
+	4.0 was fairly slow
+	4.5 much more efficient
+
+Should always verify that parallel improves situation and produces same result as sequential
+
+AsOrdered reinforces ordered execution on Linq
+
+
+WebAPI
+------
+API for creating services based on REST architectural style
+
+REST
+	- works same way as web
+	- flexible content types
+	- greater flexibility over endpoints
+	- can use GET for caching support
+	- all platforms can access functionlity
+	- Hypermedia can guide caller through API (HATEOAS)
+
+REST identifies actions by verbs used against URIs
+	GET - read with no server state change
+	PUT - state change that is idempotent
+	DELETE - deletion that is idempotent
+	POST - non-idempotent change
+
+Content type negotiation allows servers to respond with a variety of representations based on the callers Accept HTTP header
+
+WebAPI similar to MVC in that we have routes and controllers
+	- Can have methods for Get, Put, etc
+	- better to use [HttpGet] and [Route] to be more explicit
+
+	Need to use HTTP status codes effectively for correct response codes
+
+	2.0 uses IHttpActionResult as return type from actions to support testability
+
+
+GC
+--
+Runtime manages memory. We request allocation and runtime cleans up based on rich adaptive algorithm
+
+Only triggered on failed allocation (failed based on heuristics to trigger GC)
+
+GC starts assuming everything is garbage
+	- walks live routes marking reachable objects
+	- compacts reachable objects
+
+Reachable uses live routes
+	-  non null statics
+	- local variables still in use
+		- different for debug and release builds
+	- Other less common (freachable queue, interop layer, etc)
+
+Generations allow GC to only consider smaller number of objects
+	- Gen0 - newly allocated objects
+	- Gen1 - everything that has survived Gen0 collect
+	- Gen2 - everything that has survived Gen1 collect
+
+Gen0 and 1 collects are very fast - Gen2 can be slow
+
+More garbage collected, more likely GC will collect generation again
+	- can cause huge problems if lots of garbage in Gen2
+
+Managing object lifetime closely can solve GC issues (make sure they are released early or reused, use WeakReferences, etc). However, should not be plan from day one - should be used to solve a problem
+
+Unnecessary promotion one of biggest issues for GC - especially when promoted objects become garbage quickly
+	- Gen2 collects very productive to GC so does many more (mid-life crisis)
+
+GC modes
+	- non-concurrent runs to completion
+	- concurrent interleaves application threads
+	- async can pause gen2 collect to run gen0 collect
+
+Workstation Concurrent GC is default
+	- gen0 and 1 non-concurrent
+	- gen2 can be concurrent or async
+
+Workstation non-concurrent
+	- everything is non-concurrent
+
+Server GC
+	- spreads GC across multiple cores by giving each core own part of    
+	  managed heap (arena)
+
+Runtime does not manage non-memory resources
+	- IDisposable used as pattern for managing these
+	- Up to developer to call Dispose - never called by runtime
+	- Should implement IDisposable if aggregating other IDisposable objects
+
+Classes that directly control unmanaged resources should implement finalizer. Since 2.0 only SafeHandle derived classes need finalizers
+
+GC does not collect finalizable objects directly - hands to finalizer thread to execute. Means object is always promoted
+
+Beware of reference heavy data structures as causes pain in mark phase of GC
+
+Beware of pinning as causes problems for compact phase. Consider using Large Object Heap for interop buffers (and reuse them)
+
+Beware of badly tuned caches - causes large amounts of promoted garbage
+
+Consider setting references to null before rebuilding large data structures (allows old graph to be collected while generating new graph so not promoted). 
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSwipe", "TestSwipe\TestSwipe.csproj", "{9B5EA527-98CD-4310-93A2-6EC7BE20DABA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments", "Payments\Payments.csproj", "{C4721C98-5CA1-4ABB-AAC6-E0C6DD30166D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Test", "Payments.Test\Payments.Test.csproj", "{D678369D-8E24-49AF-ABFD-6CD08500CCAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{63574B84-AA15-41A6-B512-6302FB086C6F}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		TestSwipe.vsmdi = TestSwipe.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = TestSwipe.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B5EA527-98CD-4310-93A2-6EC7BE20DABA}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{9B5EA527-98CD-4310-93A2-6EC7BE20DABA}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{9B5EA527-98CD-4310-93A2-6EC7BE20DABA}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{9B5EA527-98CD-4310-93A2-6EC7BE20DABA}.Debug|x86.ActiveCfg = Debug|x86
+		{9B5EA527-98CD-4310-93A2-6EC7BE20DABA}.Debug|x86.Build.0 = Debug|x86
+		{9B5EA527-98CD-4310-93A2-6EC7BE20DABA}.Release|Any CPU.ActiveCfg = Release|x86
+		{9B5EA527-98CD-4310-93A2-6EC7BE20DABA}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{9B5EA527-98CD-4310-93A2-6EC7BE20DABA}.Release|Mixed Platforms.Build.0 = Release|x86
+		{9B5EA527-98CD-4310-93A2-6EC7BE20DABA}.Release|x86.ActiveCfg = Release|x86
+		{9B5EA527-98CD-4310-93A2-6EC7BE20DABA}.Release|x86.Build.0 = Release|x86
+		{C4721C98-5CA1-4ABB-AAC6-E0C6DD30166D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4721C98-5CA1-4ABB-AAC6-E0C6DD30166D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4721C98-5CA1-4ABB-AAC6-E0C6DD30166D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C4721C98-5CA1-4ABB-AAC6-E0C6DD30166D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C4721C98-5CA1-4ABB-AAC6-E0C6DD30166D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C4721C98-5CA1-4ABB-AAC6-E0C6DD30166D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4721C98-5CA1-4ABB-AAC6-E0C6DD30166D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4721C98-5CA1-4ABB-AAC6-E0C6DD30166D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C4721C98-5CA1-4ABB-AAC6-E0C6DD30166D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C4721C98-5CA1-4ABB-AAC6-E0C6DD30166D}.Release|x86.ActiveCfg = Release|Any CPU
+		{D678369D-8E24-49AF-ABFD-6CD08500CCAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D678369D-8E24-49AF-ABFD-6CD08500CCAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D678369D-8E24-49AF-ABFD-6CD08500CCAA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D678369D-8E24-49AF-ABFD-6CD08500CCAA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D678369D-8E24-49AF-ABFD-6CD08500CCAA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D678369D-8E24-49AF-ABFD-6CD08500CCAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D678369D-8E24-49AF-ABFD-6CD08500CCAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D678369D-8E24-49AF-ABFD-6CD08500CCAA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D678369D-8E24-49AF-ABFD-6CD08500CCAA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D678369D-8E24-49AF-ABFD-6CD08500CCAA}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
