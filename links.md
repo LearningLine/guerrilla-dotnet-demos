@@ -15,4 +15,6 @@ WPF
 
 * [Mark Smith's MVVM Helpers](https://mvvmhelpers.codeplex.com/)
 
+Code Challenges
 
+* [CodeChallenges.zip](https://www.dropbox.com/s/4cxrabrhv3onms0/CodeChallenges.zip?dl=0) Use the same password as the screensharing. Forgot? Email one of us.
