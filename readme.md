@@ -7,6 +7,8 @@ Note: To clone this branch, please use:
 
 git clone https://github.com/LearningLine/guerrilla-dotnet-demos --branch 2015-03-30-Kennedy-Allen --single-branch 2015-03-30-Kennedy-Allen
 
+Links: [links.md](links.md)
+
 Welcome to DevelopMentor's demos repository for 
 [Guerrilla.NET](https://www.develop.com/training-course/guerrilla-net). 
 
