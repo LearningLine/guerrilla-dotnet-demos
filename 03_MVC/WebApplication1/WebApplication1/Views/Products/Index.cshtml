@@ -1,0 +1,33 @@
+﻿@model WebApplication1.Models.ProductIndexModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        body{
+            font-family:sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1> 
+        this is a view!
+    </h1>
+    <h2>
+        the time is: @DateTime.Now
+    </h2>
+    <h2>The message was: @ViewData["the-message"]</h2>
+    <h2>The strongly typed model is: @Model.Message</h2>
+    @if(DateTime.Now.Hour > 12)
+    {
+        <h3>Good afternoon!</h3>
+    }
+    else
+    {
+        <h3>Good morning!</h3>
+    }
+</body>
+</html>

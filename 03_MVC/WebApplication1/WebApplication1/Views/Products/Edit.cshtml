@@ -1,0 +1,34 @@
+﻿@model WebApplication1.Models.ProductViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    <h1>Edit Product ID @Model.ID</h1>
+    @using (Html.BeginForm("Update", "Products"))
+    {
+        @Html.ValidationSummary("Please fix these errors")
+        @Html.Hidden("id")
+        
+        <div>
+            @Html.Label("Name")
+            @Html.TextBox("Name")
+            @Html.ValidationMessage("Name")
+        </div>
+        <div>
+            @Html.Label("Price")
+            @Html.TextBox("Price")
+            @Html.ValidationMessage("Price")
+        </div>
+        <div>
+            <button>Save Changes</button>
+        </div>
+    }
+
+    
+</body>
+</html>
