@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "basic_math", "basic_math\basic_math.csproj", "{805A0539-5C61-4476-BCF8-CC292A37D3BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "the_biz", "the_biz\the_biz.csproj", "{B67EE9B5-B4DA-4C81-A58E-523C4177A0B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prod_consumer", "prod_consumer\prod_consumer.csproj", "{2E12AC3E-529F-42B5-947D-DB324C324467}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{805A0539-5C61-4476-BCF8-CC292A37D3BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{805A0539-5C61-4476-BCF8-CC292A37D3BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{805A0539-5C61-4476-BCF8-CC292A37D3BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{805A0539-5C61-4476-BCF8-CC292A37D3BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B67EE9B5-B4DA-4C81-A58E-523C4177A0B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B67EE9B5-B4DA-4C81-A58E-523C4177A0B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B67EE9B5-B4DA-4C81-A58E-523C4177A0B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B67EE9B5-B4DA-4C81-A58E-523C4177A0B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E12AC3E-529F-42B5-947D-DB324C324467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E12AC3E-529F-42B5-947D-DB324C324467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E12AC3E-529F-42B5-947D-DB324C324467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E12AC3E-529F-42B5-947D-DB324C324467}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
