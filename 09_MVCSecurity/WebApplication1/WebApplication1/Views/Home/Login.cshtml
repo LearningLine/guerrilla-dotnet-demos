@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+@if(Request.IsAuthenticated)
+{
+    <h3>You tried to access a page you were not allowed to....</h3>
+}
+@using(Html.BeginForm())
+{ 
+    @Html.ValidationSummary()
+
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" autofocus class="form-control" id="username" name="username" />
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary">Login</button>
+    </div>
+}
+
