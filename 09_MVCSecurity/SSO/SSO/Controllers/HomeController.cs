@@ -22,6 +22,8 @@ namespace SSO.Controllers
 
         public ActionResult Logout()
         {
+            // this line does single signout
+            //Request.GetOwinContext().Authentication.SignOut();
             Request.GetOwinContext().Authentication.SignOut("Cookies");
             return Redirect("~/");
         }
