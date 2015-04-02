@@ -3,14 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:data="clr-namespace:TravelApp.Data;assembly=TravelApp.Data"
         Title="MainWindow" Height="350" Width="525"
-		Background="#FF222222" KeyDown="onKeyDown"
+		Background="#FF222222"
 		WindowState="Maximized">
     <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+		</Grid.RowDefinitions>
 
-		
-		<ListBox  ItemsSource="{Binding}"
+		<Button Command="{Binding ShowDetails}">Show selected</Button>
+		<ListBox Grid.Row="1"  
+				 ItemsSource="{Binding Destinations}"
 				  Background="#FF222222"
-			MouseDoubleClick="ShowDetails">
+				  SelectedItem="{Binding SelectedDestination}">
 
 			<ListBox.ItemTemplate>
 				<DataTemplate DataType="data:Destination">

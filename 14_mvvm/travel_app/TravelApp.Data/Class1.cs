@@ -20,7 +20,7 @@ namespace TravelApp.Data
 						Id = ++id,
 						Name = Path.GetFileNameWithoutExtension(i)
 							.Replace("-", " ").Replace("_", " ").Trim(),
-						Picture = "images/" + i,
+						Picture = "/images/" + i,
 						Rating = rand.Next(5, 11)
 					}).ToArray();
 
