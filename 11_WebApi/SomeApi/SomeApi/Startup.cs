@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace SomeApi
 {
@@ -12,6 +13,7 @@ namespace SomeApi
         public void Configuration(IAppBuilder app)
         {
             var config = new HttpConfiguration();
+            config.EnableCors(new EnableCorsAttribute("http://localhost:16314, http://foo.com", "*", "*"));
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver =
                 new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();

@@ -1,0 +1,28 @@
+﻿<div ng-controller="PersonCtrl">
+    <div title="The person's name is {{ person.name }}"
+         ng-show="person.age">
+        Name: {{ person.name }}
+    </div>
+    <div>Name: <input ng-model="person.name"></div>
+    <div>Age: <span ng-bind="person.age"></span></div>
+    <div>Age: <input ng-model="person.age"></div>
+    <div>
+        New Kid Name: <input ng-model="newName" />
+        <button ng-click="addKid(person, newName); newName = ''">Add Kid</button>
+    </div>
+    <div>Kids: <span ng-bind="person.children.length"></span></div>
+    <ul>
+        <li ng-repeat="kid in person.children">
+            {{$index}}
+            <button ng-click="removeKid(person, $index)">remove</button>
+            <input type="text" ng-model="kid.name" />
+            <span ng-bind="kid.name"></span>
+        </li>
+    </ul>
+    <div>
+        <button ng-disabled="!isValid(person)"
+                ng-click="update(person)">
+            Update
+        </button>
+    </div>
+</div>

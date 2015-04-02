@@ -65,7 +65,6 @@ namespace SomeApi
             return Ok(person);
         }
 
-
         [Route("{id:int}")]
         [HttpPut]
         public IHttpActionResult Put(int id, Person model)
