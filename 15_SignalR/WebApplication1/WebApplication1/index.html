@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div>Msg: <input /><button>Send</button></div>
+    <ul></ul>
+    <script src="Scripts/jquery-1.6.4.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="signalr/hubs"></script>
+    <script>
+        $(function () {
+            var chat = jQuery.signalR.chat;
+
+            chat.client.gotMessage = function (msg) {
+                $("<li>").text(msg).prependTo("ul");
+            };
+
+            jQuery.signalR.hub.start().then(function () {
+                $("<li>").text("connected!").appendTo("ul");
+
+                $("button").click(function () {
+                    chat.server.sendMessage($("input").val());
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
