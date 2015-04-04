@@ -1,0 +1,412 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		038BDE091ACF1A1700480F47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BDE081ACF1A1700480F47 /* AppDelegate.swift */; };
+		038BDE0B1ACF1A1700480F47 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BDE0A1ACF1A1700480F47 /* ViewController.swift */; };
+		038BDE0D1ACF1A1700480F47 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038BDE0C1ACF1A1700480F47 /* Images.xcassets */; };
+		038BDE101ACF1A1700480F47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 038BDE0E1ACF1A1700480F47 /* Main.storyboard */; };
+		038BDE1C1ACF1A1700480F47 /* winappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BDE1B1ACF1A1700480F47 /* winappTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		038BDE161ACF1A1700480F47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 038BDDFB1ACF1A1700480F47 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 038BDE021ACF1A1700480F47;
+			remoteInfo = winapp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		038BDE031ACF1A1700480F47 /* winapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = winapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		038BDE071ACF1A1700480F47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		038BDE081ACF1A1700480F47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		038BDE0A1ACF1A1700480F47 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		038BDE0C1ACF1A1700480F47 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		038BDE0F1ACF1A1700480F47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		038BDE151ACF1A1700480F47 /* winappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = winappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		038BDE1A1ACF1A1700480F47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		038BDE1B1ACF1A1700480F47 /* winappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = winappTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		038BDE001ACF1A1700480F47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		038BDE121ACF1A1700480F47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		038BDDFA1ACF1A1700480F47 = {
+			isa = PBXGroup;
+			children = (
+				038BDE051ACF1A1700480F47 /* winapp */,
+				038BDE181ACF1A1700480F47 /* winappTests */,
+				038BDE041ACF1A1700480F47 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		038BDE041ACF1A1700480F47 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				038BDE031ACF1A1700480F47 /* winapp.app */,
+				038BDE151ACF1A1700480F47 /* winappTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		038BDE051ACF1A1700480F47 /* winapp */ = {
+			isa = PBXGroup;
+			children = (
+				038BDE081ACF1A1700480F47 /* AppDelegate.swift */,
+				038BDE0A1ACF1A1700480F47 /* ViewController.swift */,
+				038BDE0C1ACF1A1700480F47 /* Images.xcassets */,
+				038BDE0E1ACF1A1700480F47 /* Main.storyboard */,
+				038BDE061ACF1A1700480F47 /* Supporting Files */,
+			);
+			path = winapp;
+			sourceTree = "<group>";
+		};
+		038BDE061ACF1A1700480F47 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				038BDE071ACF1A1700480F47 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		038BDE181ACF1A1700480F47 /* winappTests */ = {
+			isa = PBXGroup;
+			children = (
+				038BDE1B1ACF1A1700480F47 /* winappTests.swift */,
+				038BDE191ACF1A1700480F47 /* Supporting Files */,
+			);
+			path = winappTests;
+			sourceTree = "<group>";
+		};
+		038BDE191ACF1A1700480F47 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				038BDE1A1ACF1A1700480F47 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		038BDE021ACF1A1700480F47 /* winapp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 038BDE1F1ACF1A1700480F47 /* Build configuration list for PBXNativeTarget "winapp" */;
+			buildPhases = (
+				038BDDFF1ACF1A1700480F47 /* Sources */,
+				038BDE001ACF1A1700480F47 /* Frameworks */,
+				038BDE011ACF1A1700480F47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = winapp;
+			productName = winapp;
+			productReference = 038BDE031ACF1A1700480F47 /* winapp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		038BDE141ACF1A1700480F47 /* winappTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 038BDE221ACF1A1700480F47 /* Build configuration list for PBXNativeTarget "winappTests" */;
+			buildPhases = (
+				038BDE111ACF1A1700480F47 /* Sources */,
+				038BDE121ACF1A1700480F47 /* Frameworks */,
+				038BDE131ACF1A1700480F47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				038BDE171ACF1A1700480F47 /* PBXTargetDependency */,
+			);
+			name = winappTests;
+			productName = winappTests;
+			productReference = 038BDE151ACF1A1700480F47 /* winappTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		038BDDFB1ACF1A1700480F47 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = DevelopMentor;
+				TargetAttributes = {
+					038BDE021ACF1A1700480F47 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					038BDE141ACF1A1700480F47 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 038BDE021ACF1A1700480F47;
+					};
+				};
+			};
+			buildConfigurationList = 038BDDFE1ACF1A1700480F47 /* Build configuration list for PBXProject "winapp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 038BDDFA1ACF1A1700480F47;
+			productRefGroup = 038BDE041ACF1A1700480F47 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				038BDE021ACF1A1700480F47 /* winapp */,
+				038BDE141ACF1A1700480F47 /* winappTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		038BDE011ACF1A1700480F47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				038BDE0D1ACF1A1700480F47 /* Images.xcassets in Resources */,
+				038BDE101ACF1A1700480F47 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		038BDE131ACF1A1700480F47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		038BDDFF1ACF1A1700480F47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				038BDE0B1ACF1A1700480F47 /* ViewController.swift in Sources */,
+				038BDE091ACF1A1700480F47 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		038BDE111ACF1A1700480F47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				038BDE1C1ACF1A1700480F47 /* winappTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		038BDE171ACF1A1700480F47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 038BDE021ACF1A1700480F47 /* winapp */;
+			targetProxy = 038BDE161ACF1A1700480F47 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		038BDE0E1ACF1A1700480F47 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				038BDE0F1ACF1A1700480F47 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		038BDE1D1ACF1A1700480F47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		038BDE1E1ACF1A1700480F47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		038BDE201ACF1A1700480F47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = winapp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		038BDE211ACF1A1700480F47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = winapp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		038BDE231ACF1A1700480F47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = winappTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/winapp.app/Contents/MacOS/winapp";
+			};
+			name = Debug;
+		};
+		038BDE241ACF1A1700480F47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = winappTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/winapp.app/Contents/MacOS/winapp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		038BDDFE1ACF1A1700480F47 /* Build configuration list for PBXProject "winapp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				038BDE1D1ACF1A1700480F47 /* Debug */,
+				038BDE1E1ACF1A1700480F47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		038BDE1F1ACF1A1700480F47 /* Build configuration list for PBXNativeTarget "winapp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				038BDE201ACF1A1700480F47 /* Debug */,
+				038BDE211ACF1A1700480F47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		038BDE221ACF1A1700480F47 /* Build configuration list for PBXNativeTarget "winappTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				038BDE231ACF1A1700480F47 /* Debug */,
+				038BDE241ACF1A1700480F47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 038BDDFB1ACF1A1700480F47 /* Project object */;
+}
