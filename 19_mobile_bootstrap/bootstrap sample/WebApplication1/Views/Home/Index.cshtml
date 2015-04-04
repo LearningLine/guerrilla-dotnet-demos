@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+	form div {
+		width: 120px;
+		font-size: 18px;
+		font-weight: bold;
+		display: inline-block;
+	}
+
+	form input.form-control {
+		display: inline-block;
+		margin: 10px;
+	}
+</style>
+
+<div>
+	<form>
+
+		<div class="hidden-xs">First name: </div>
+		<input type="text" value="foo" class="form-control hidden-xs"
+			   required placeholder=" First name" />
+		<br class="hidden-xs">
+		<div class="hidden-xs">Last name: </div>
+		<input type="text" value="foo" class="form-control hidden-xs"
+			   required placeholder=" Last name" />
+		<br class="hidden-xs">
+		<div>Email: </div>
+		<input type="text" class="form-control"
+			   required placeholder=" Email name" />
+		<br />
+		<button class="btn btn-danger">
+			Create account
+		</button>
+
+	</form>
+</div>

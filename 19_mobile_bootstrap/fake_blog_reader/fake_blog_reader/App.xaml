@@ -1,0 +1,13 @@
+﻿<Application
+    x:Class="fake_blog_reader.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:fake_blog_reader"
+    xmlns:localData="using:fake_blog_reader.Data">
+
+    <Application.Resources>
+
+        <!-- Application-specific resources -->
+        <x:String x:Key="AppName">fake_blog_reader</x:String>
+    </Application.Resources>
+</Application>
