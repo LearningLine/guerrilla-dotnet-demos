@@ -29,13 +29,13 @@
             <TextBox x:Name="UserName" IsEnabled="True" Margin="0,0,10,0"/>
         </DockPanel>
 
-        <TextBox x:Name="EnteredWord" Grid.Row="1" Margin="10,5"
+        <TextBox x:Name="EnteredIssue" Grid.Row="1" Margin="10,5"
                  Visibility="Visible"/>
         <Button x:Name="Submit" Grid.Row="1" Grid.Column="1" Content="Submit"
                 IsDefault="True" Margin="0,5,10,5"
                 Visibility="Visible"/>
 
-        <ListBox x:Name="Words" Grid.Row="2" Grid.ColumnSpan="2" Margin="5"
+        <ListBox x:Name="Issues" Grid.Row="2" Grid.ColumnSpan="2" Margin="5"
                  HorizontalContentAlignment="Stretch">
         </ListBox>
     </Grid>
