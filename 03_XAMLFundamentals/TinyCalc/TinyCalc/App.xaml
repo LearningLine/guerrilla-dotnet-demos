@@ -1,0 +1,10 @@
+﻿<Application
+    x:Class="TinyCalc.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TinyCalc"
+    RequestedTheme="Light">
+    <Application.Resources>
+        <SolidColorBrush x:Key="red" Color="Red" />
+    </Application.Resources>
+</Application>
