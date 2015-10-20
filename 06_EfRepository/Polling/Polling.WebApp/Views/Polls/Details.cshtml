@@ -1,0 +1,15 @@
+﻿@model Polling.Entities.Poll
+
+@{
+    ViewBag.Title = "Poll Details";
+}
+
+<h2>@Model.QuestionText</h2>
+
+<ul>
+    @foreach (var choice in Model.Choices)
+    {
+        <li>@choice.ChoiceText - @choice.Votes.Count</li>
+    }
+</ul>
+@Html.ActionLink(linkText: "Vote",actionName: "Vote",routeValues: new { id = Model.Id })
