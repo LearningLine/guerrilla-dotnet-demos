@@ -5,10 +5,8 @@ namespace IssueTracker.Data
 {
     public interface IIssueService
     {
-        IEnumerable<Issue> GetAllIssues();
-        IEnumerable<Issue> GetActiveIssues();
+        IEnumerable<Issue> AllIssues { get; }
         Issue GetIssue(string text);
-        Issue ReportIssue(string text, User user);
-        void ResolveIssue(Issue issue, string fix, DateTime found);
+        void ReportIssue(Issue issue, User user);
     }
 }

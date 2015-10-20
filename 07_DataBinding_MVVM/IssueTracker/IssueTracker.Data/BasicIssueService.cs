@@ -8,14 +8,9 @@ namespace IssueTracker.Data
     {
         private List<Issue> _issues = new List<Issue>();
 
-        public IEnumerable<Issue> GetAllIssues()
+        public IEnumerable<Issue> AllIssues
         {
-            return _issues;
-        }
-
-        public IEnumerable<Issue> GetActiveIssues()
-        {
-            return _issues.Where(i => i.Fixes == null || !i.Fixes.Any());
+            get { return _issues; }
         }
 
         public Issue GetIssue(string text)
@@ -23,29 +18,14 @@ namespace IssueTracker.Data
             return _issues.FirstOrDefault(w => w.Text == text);
         }
 
-        public Issue ReportIssue(string text, User user)
+        public void ReportIssue(Issue issue, User user)
         {
-            Issue match = _issues.FirstOrDefault(w => w.Text == text);
-            if (match == null)
-            {
-                match = new Issue { Text = text, Users = new List<User>() };
-                _issues.Add(match);
-            }
+            if (!_issues.Contains(issue))
+                _issues.Add(issue);
 
-            match.ReportCount++;
-            if (!match.Users.Contains(user))
-                match.Users.Add(user);
-
-            return match;
-        }
-
-        public void ResolveIssue(Issue issue, string fix, DateTime found)
-        {
-            issue.Fixes.Add(new Resolution
-            {
-                FixDescription = fix,
-                Created = found
-            });
+            issue.ReportCount++;
+            if (!issue.Users.Contains(user))
+                issue.Users.Add(user);
         }
     }
 }
