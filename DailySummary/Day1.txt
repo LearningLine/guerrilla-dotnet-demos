@@ -1,0 +1,211 @@
+Day 1 Summary:
+
+C# 1 - 
+1:1 Mapping between IL and C#
+Except for : 
+1. ForEach 
+2. Events
+    private delegate 
+    public add/remove method
+
+IEnumerator
+IEnumerable
+
+C# 2
+  Simplified 
+
+yield return and yield break
+
+return value of method is IEnumerable<T>
+use yield inside the method
+
+
+Delegates
+
+   C# 1 
+     Declare a method and use it by specifying th method name
+   C# 2
+     anonmyous methods
+      Primes.RemoveAll(delegate (int p) { return p < 5 });
+    
+	Lambda
+      Primes.RemoveAll( (int p) => { return p < 5 });
+
+      Primes.RemoveAll( (p) => { return p < 5 });
+
+      Primes.RemoveAll( (p) => p < 5 );
+
+	Primes.RemoveAll( p => p < 5 );
+ C# 3
+
+  LINQ
+	IQueryable
+	Extension Methods	
+		static string AllUpper(this string input) { } 
+
+	anonmyous type
+	 	new { Foo = "foo", Bar = "bar" } 
+
+	var keyword
+		var myVar = new { Foo = "foo", Bar = "bar" } 
+		myVar = "Scott"  ? // Only if var is dynamic....
+
+
+	Dictionary<string,object> dict = new Dictionary<string,object>();
+	var dict = Dictionary<string,object>
+		{
+			{ "Scott", "Rocks" },
+			{ "Brad", 42 },
+		}
+
+
+	Extension Method Syntax
+	
+	primes.Where(p => p < 5)
+		.Select(p => p);
+
+	Query syntax
+		var prime = (from p in primes
+				where p < 5
+				select p).Distinct()
+
+	Dynamic 
+		used mostly for COM interop
+		Also supports IRONPython and IRONRuby   IRON == It runs on .NET 
+		
+	
+EF
+				
+	ORM = Object Relational Mapper
+	Code First or Database First
+	DB First
+		designer (Conceptual model)
+	Model is in three layers
+		Conceptual - Your code layer
+		Mapping - Glues them together
+		Storage - Talks to DB 
+
+	Two classes 
+	DbContext - Connection to DB
+	DbSet - Collection of rows to return
+		POCO's (Plain ol' CLR object)
+	Add
+		Create new object
+		DbSet.Add(myNewObject);
+		context.SaveChanges();
+	Update
+		Just modify the object
+		Then call SaveChanges();
+		Determines what changed through Proxies or Snapshots
+	Loading Children
+		Lazy Loading is default (be careful)
+			Can turn this off
+		Eager Loading
+			.Include() (use the type safe version in System.Data.Entity)
+	Code First
+		Three ways to figure out how to create a DB
+		1. By default uses convention 
+			
+		2. Can use DataAnnotations ex: [StringLength(100)]
+
+		3. Configuration ( Fluent API )  
+	
+	Migrations
+		Three ways to migrate
+		1. default - CreateIfNotExists
+		2. DropAndRecreateIfModelChanges
+	
+	The way you should do migrations is
+		Add-Migration and Update-Database
+		Package manager console
+	
+	
+XAML
+	Designer and developer. UI is seperate from code
+	Blend and VS
+	An element in XAML 
+
+		<StackPanel></StackPanel> == var sp = new StackPanel();
+		<StackPanel Width="10"> == sp.Width = 10;
+	
+	Default namespace
+		xmlns=""  (Controls)
+	Non default namespace
+		xmlns:x="" (XAML) 
+
+	<StackPanel Width="10">
+		<StackPanel.Foreground>
+			<LinearGraidentBrush.....>
+
+		</StackPanel.Foreground>
+
+	Setting content property 
+	<Button>
+		<Ellipse />
+	</Button>		
+		
+	Markup Extensions
+
+	<StackPanel Foreground="{StaticResource MyBrush}" />
+	
+	Code Behind
+
+	 Partial classes (part in XAML and part in CS)
+	
+	
+	Click Handlers
+		<Button Click="OnClick" /> - Where does this live == Code behind
+	
+	Dependency Properties
+
+	public int MyProperty
+	{
+		get { return (int)GetValue(MyPropertyProperty); }
+		set { SetValue(MyPropertyProperty, value); }
+	}
+
+	public static readonly DependencyProperty MyPropertyProperty =
+		DependencyProperty.Register("MyProperty", typeof(int), typeof(ownerclass), new PropertyMetadata(0));
+
+	Attached Dependency Property	
+	
+	public static readonly DependencyProperty MyPropertyProperty =
+		DependencyProperty.RegisterAttached("MyProperty", typeof(int), typeof(ownerclass), new PropertyMetadata(0));
+
+
+
+	MVC
+
+		Request comes in and gets routed to a controller
+		your controller inherits from : Controller
+		View has to live in the views folder and the controller name is the subfolder name
+
+	Razor is the view engine to describe the view
+	 @ == escape into code
+	 < == back in html
+
+	In the view we can do
+
+		<a href="/polls/details" />
+		OR
+		@Html.ActionLink(linkText: "Details" ,actionName: "Details")
+
+
+	populated from Form body, URL, or Query String - Model Binding
+	Create(Poll poll)
+	{
+		
+	}
+
+
+	[HttpPost] on the method to indicate that it is a post method
+	   Validate
+	   DO SOMETHING
+	    Return Redirect
+	
+	
+
+
+
+
+
