@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IssueTracker.Client", "IssueTracker.Client\IssueTracker.Client.csproj", "{FD9E55AD-FE8B-4CCA-B7C3-422776BDE650}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IssueTracker.Data", "IssueTracker.Data\IssueTracker.Data.csproj", "{A7809E7F-C079-4016-8E66-BCCDF071446C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD9E55AD-FE8B-4CCA-B7C3-422776BDE650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD9E55AD-FE8B-4CCA-B7C3-422776BDE650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD9E55AD-FE8B-4CCA-B7C3-422776BDE650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD9E55AD-FE8B-4CCA-B7C3-422776BDE650}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7809E7F-C079-4016-8E66-BCCDF071446C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7809E7F-C079-4016-8E66-BCCDF071446C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7809E7F-C079-4016-8E66-BCCDF071446C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7809E7F-C079-4016-8E66-BCCDF071446C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
