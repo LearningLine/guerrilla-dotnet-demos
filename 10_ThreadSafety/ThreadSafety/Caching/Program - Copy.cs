@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Caching
 {
-    class Program
+	class OldProgram
     {
         private static volatile bool quit = false;
-
-		static void LessOldMain(string[] args)
+        static void Main(string[] args)
         {
-			//IResultsCache cache = new ReaderWriterResultsCache();
-			var cache = new LatestResultsCache();
+            //IResultsCache cache = new ReaderWriterResultsCache();
+            IResultsCache cache = new OptimalResultsCache();
 
-            //AddResultsUntilFirstTeamHasEnough(cache, 1000);
+            AddResultsUntilFirstTeamHasEnough(cache, 1000);
 
-            //var readerThreads = CreateCacheReaders(cache, 2);
+            var readerThreads = CreateCacheReaders(cache, 20);
 
-            Console.WriteLine("Press W to write a new result, R to read a result, and Q to quit");
+			//I put this here to go BANG
+			resetEventSlim.Set();
+
+            Console.WriteLine("Press W to write a new result, Q to quit");
             do
             {
                 while (Console.KeyAvailable == false)
@@ -38,16 +38,12 @@ namespace Caching
                 {
                     var matchResult = MatchResult.CreateRandom();
                     cache.AddResult(matchResult);
-                    Console.WriteLine("Writing : {0}",matchResult);
-                }else if (consoleKey == ConsoleKey.R)
-                {
-	                var latestResult = cache.GetLatestResult("USA");
-	                Console.WriteLine("Reading: {0}",latestResult);
+                    Console.WriteLine(matchResult);
                 }
             }
             while (!quit);
 
-            //WaitForReaders(readerThreads);
+            WaitForReaders(readerThreads);
         }
 
         private static void WaitForReaders(List<Thread> threads)
@@ -57,6 +53,8 @@ namespace Caching
                 thread.Join();
             }
         }
+
+		static ManualResetEventSlim resetEventSlim = new ManualResetEventSlim();
 
         private static List<Thread> CreateCacheReaders(IResultsCache cache, int numReaders)
         {
@@ -72,6 +70,10 @@ namespace Caching
 
         private static void ResultsReader(object o)
         {
+	        Console.WriteLine("Starting");
+	        resetEventSlim.Wait();
+
+	        Console.WriteLine("Started");
             long nResults = 0;
             IResultsCache cache = (IResultsCache)o;
             var firstCountry = MatchResult.Countries.First();

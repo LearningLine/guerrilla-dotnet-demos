@@ -43,11 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Executable.cs" />
     <Compile Include="MatchResult.cs" />
+    <Compile Include="Program - Copy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IResultsCache.cs" />
-    <Compile Include="ResultsCaches.cs" />
+    <Compile Include="SimpleResultsCache.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

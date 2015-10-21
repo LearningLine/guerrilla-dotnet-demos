@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllocatedLock.cs" />
     <Compile Include="Counters.cs" />
     <Compile Include="ICounter.cs" />
+    <Compile Include="LockExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

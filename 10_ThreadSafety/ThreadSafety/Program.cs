@@ -6,7 +6,7 @@ namespace ThreadSafety
 {
     class Program
     {
-        private const int NumberOfIterations = 10000000;
+	    private const int NumberOfIterations = 10000000;// - for Mutex
 
         static void Main(string[] args)
         {
@@ -16,11 +16,15 @@ namespace ThreadSafety
             ICounter[] counters = new ICounter[]
             {
                 new Counter(),
+                new InterlockedCounter(),
+                new MonitorCounter(),
+				new AllocatedLockCounter(), 
+				//new MutexCounter(), 
             };
 
             const int numberOfThreads = 2;
 
-            foreach (ICounter counter in counters)
+			foreach (ICounter counter in counters)
             {
                 Stopwatch timer = Stopwatch.StartNew();
                 ExerciseCounter(counter, numberOfThreads);
