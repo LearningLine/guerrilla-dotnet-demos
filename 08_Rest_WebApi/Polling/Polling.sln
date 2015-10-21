@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polling.WebApp", "Polling.WebApp\Polling.WebApp.csproj", "{20A04924-9FED-42E2-B15B-EB8E79793C87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polling.DataAccess", "Polling.DataAccess\Polling.DataAccess.csproj", "{FEB88FB4-2572-4EA4-95AD-A582E9C353D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polling.Entities", "Polling.Entities\Polling.Entities.csproj", "{64250260-7E60-48C3-B3A8-9867AB37A544}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polling.WebApp.Test", "Polling.WebApp.Test\Polling.WebApp.Test.csproj", "{18BB9DB8-D8D4-433D-832E-B1BA712E1556}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polling.DataAccess.Test", "Polling.DataAccess.Test\Polling.DataAccess.Test.csproj", "{54F51D62-F391-4872-AD86-BEE9F740CA3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polling.WebAPI", "Polling.WebAPI\Polling.WebAPI.csproj", "{0BC19BC5-98E8-404F-80EC-F9A9DDA543A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WepAPI.Client", "WepAPI.Client\WepAPI.Client.csproj", "{7593C14D-985B-4017-9FBF-E4658AA89C25}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20A04924-9FED-42E2-B15B-EB8E79793C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20A04924-9FED-42E2-B15B-EB8E79793C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20A04924-9FED-42E2-B15B-EB8E79793C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20A04924-9FED-42E2-B15B-EB8E79793C87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEB88FB4-2572-4EA4-95AD-A582E9C353D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEB88FB4-2572-4EA4-95AD-A582E9C353D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEB88FB4-2572-4EA4-95AD-A582E9C353D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEB88FB4-2572-4EA4-95AD-A582E9C353D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64250260-7E60-48C3-B3A8-9867AB37A544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64250260-7E60-48C3-B3A8-9867AB37A544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64250260-7E60-48C3-B3A8-9867AB37A544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64250260-7E60-48C3-B3A8-9867AB37A544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18BB9DB8-D8D4-433D-832E-B1BA712E1556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18BB9DB8-D8D4-433D-832E-B1BA712E1556}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18BB9DB8-D8D4-433D-832E-B1BA712E1556}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18BB9DB8-D8D4-433D-832E-B1BA712E1556}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54F51D62-F391-4872-AD86-BEE9F740CA3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54F51D62-F391-4872-AD86-BEE9F740CA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54F51D62-F391-4872-AD86-BEE9F740CA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54F51D62-F391-4872-AD86-BEE9F740CA3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BC19BC5-98E8-404F-80EC-F9A9DDA543A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BC19BC5-98E8-404F-80EC-F9A9DDA543A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BC19BC5-98E8-404F-80EC-F9A9DDA543A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BC19BC5-98E8-404F-80EC-F9A9DDA543A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7593C14D-985B-4017-9FBF-E4658AA89C25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7593C14D-985B-4017-9FBF-E4658AA89C25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7593C14D-985B-4017-9FBF-E4658AA89C25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7593C14D-985B-4017-9FBF-E4658AA89C25}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

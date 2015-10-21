@@ -1,0 +1,47 @@
+﻿log[0] = SELECT 
+    [UnionAll1].[Id] AS [C1], 
+    [UnionAll1].[Id1] AS [C2], 
+    [UnionAll1].[QuestionText] AS [C3], 
+    [UnionAll1].[C1] AS [C4], 
+    [UnionAll1].[Id2] AS [C5], 
+    [UnionAll1].[PollId] AS [C6], 
+    [UnionAll1].[ChoiceText] AS [C7], 
+    [UnionAll1].[C2] AS [C8], 
+    [UnionAll1].[C3] AS [C9], 
+    [UnionAll1].[C4] AS [C10]
+    FROM  (SELECT 
+        CASE WHEN ([Extent2].[Id] IS NULL) THEN CAST(NULL AS int) ELSE 1 END AS [C1], 
+        [Limit1].[Id] AS [Id], 
+        [Limit1].[Id] AS [Id1], 
+        [Limit1].[QuestionText] AS [QuestionText], 
+        [Extent2].[Id] AS [Id2], 
+        [Extent2].[PollId] AS [PollId], 
+        [Extent2].[ChoiceText] AS [ChoiceText], 
+        CAST(NULL AS int) AS [C2], 
+        CAST(NULL AS int) AS [C3], 
+        CAST(NULL AS int) AS [C4]
+        FROM   (SELECT TOP (1) 
+            [Extent1].[Id] AS [Id], 
+            [Extent1].[QuestionText] AS [QuestionText]
+            FROM [dbo].[Polls] AS [Extent1]
+            WHERE [Extent1].[Id] = @p__linq__0 ) AS [Limit1]
+        LEFT OUTER JOIN [dbo].[Choices] AS [Extent2] ON [Limit1].[Id] = [Extent2].[PollId]
+    UNION ALL
+        SELECT 
+        2 AS [C1], 
+        [Limit2].[Id] AS [Id], 
+        [Limit2].[Id] AS [Id1], 
+        [Limit2].[QuestionText] AS [QuestionText], 
+        CAST(NULL AS int) AS [C2], 
+        CAST(NULL AS int) AS [C3], 
+        CAST(NULL AS varchar(1)) AS [C4], 
+        [Extent4].[Id] AS [Id2], 
+        [Extent4].[ChoiceId] AS [ChoiceId], 
+        [Extent4].[PollId] AS [PollId]
+        FROM   (SELECT TOP (1) 
+            [Extent3].[Id] AS [Id], 
+            [Extent3].[QuestionText] AS [QuestionText]
+            FROM [dbo].[Polls] AS [Extent3]
+            WHERE [Extent3].[Id] = @p__linq__0 ) AS [Limit2]
+        INNER JOIN [dbo].[Votes] AS [Extent4] ON [Limit2].[Id] = [Extent4].[PollId]) AS [UnionAll1]
+    ORDER BY [UnionAll1].[Id1] ASC, [UnionAll1].[C1] ASC
