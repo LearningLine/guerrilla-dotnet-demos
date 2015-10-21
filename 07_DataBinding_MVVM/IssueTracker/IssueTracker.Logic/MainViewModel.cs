@@ -9,20 +9,37 @@ using Microsoft.Practices.Prism.Commands;
 
 namespace IssueTracker.Logic
 {
-    public class MainViewModel
+    public class MainViewModel : Bindable
     {
         private ObservableCollection<IssueViewModel> _issues = new ObservableCollection<IssueViewModel>();
         private IIssueService _service;
+        private bool isLoggedIn;
+
+        public string IssueText { get; set; }
+
+        public DelegateCommand<string> LoginCommand { get; set; }
+        public DelegateCommand EnterIssueCommand { get; set; }
 
         public MainViewModel()
         {
-            _service = null;
+            _service = new BasicIssueService();
+            LoginCommand = new DelegateCommand<string>(Login, CanLogin);
+            EnterIssueCommand = new DelegateCommand(EnterIssue);
         }
 
         public User User { get; private set; }
 
+        public IEnumerable<IssueViewModel> Issues
+        {
+            get { return _issues; }
+        }
 
-        private bool CanLogin()
+        public bool IsLoggedIn
+        {
+            get { return User!= null; }
+        }
+
+        private bool CanLogin(string userName)
         {
             return User == null;
         }
@@ -30,21 +47,28 @@ namespace IssueTracker.Logic
         private void Login(string username)
         {
             User = new User { Name = username };
+            LoginCommand.RaiseCanExecuteChanged();
+            OnPropertyChanged("IsLoggedIn");
         }
 
         private void EnterIssue()
         {
-            string issueText = "";
-
             DateTime reportTime = DateTime.Now;
-            Issue issue = _service.GetIssue(issueText);
+            Issue issue = _service.GetIssue(IssueText);
             if (issue == null)
             {
-                issue = new Issue { Text = issueText, Users = new List<User>() };
+                issue = new Issue { Text = IssueText, Users = new List<User>() };
             }
             _service.ReportIssue(issue, User);
 
+            var issueViewModel = _issues.FirstOrDefault(ivm => ivm.Issue == issue);
+            if (issueViewModel == null)
+            {
+                issueViewModel = new IssueViewModel(issue);
+                _issues.Add(issueViewModel);
+            }
 
+            issueViewModel.Update(reportTime);
         }
     }
 }

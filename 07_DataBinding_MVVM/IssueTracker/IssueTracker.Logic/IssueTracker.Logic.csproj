@@ -55,6 +55,7 @@
     <Compile Include="Bindable.cs" />
     <Compile Include="IssueViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

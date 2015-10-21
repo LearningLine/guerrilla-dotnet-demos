@@ -35,14 +35,14 @@ namespace IssueTracker.Logic
                 if (_lastChange == value)
                     return;
                 _lastChange = value;
-                //OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         public void Update(DateTime time)
         {
             LastChange = time;
-            //OnPropertyChanged(() => Count);
+            OnPropertyChanged("Count");
         }
     }
 }
