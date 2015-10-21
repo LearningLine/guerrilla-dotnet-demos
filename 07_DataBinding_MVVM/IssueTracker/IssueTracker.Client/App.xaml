@@ -1,0 +1,17 @@
+﻿<Application x:Class="IssueTracker.Client.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:IssueTracker.Client"
+             xmlns:logic="clr-namespace:IssueTracker.Logic;assembly=IssueTracker.Logic"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <DataTemplate x:Key="IssueTemplate" DataType="{x:Type logic:IssueViewModel}">
+            <Border BorderBrush="LightGray" BorderThickness="0,1">
+                <DockPanel Margin="5" TextBlock.FontSize="14">
+                    <TextBlock Text="{Binding Text}"/>
+                    <TextBlock x:Name="ReportCount" Text="{Binding Count}" Margin="10,0"/>
+                </DockPanel>
+            </Border>
+        </DataTemplate>
+    </Application.Resources>
+</Application>
