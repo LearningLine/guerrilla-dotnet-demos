@@ -1,0 +1,29 @@
+﻿<Window x:Class="BadLibs.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BadLibs"
+        mc:Ignorable="d"
+        Title="BadLibs" Height="800" Width="650">
+    <DockPanel>
+        <TextBlock x:Name="Time" DockPanel.Dock="Bottom" Margin="10,5" FontSize="16" TextAlignment="Right"/>
+        <UniformGrid DockPanel.Dock="Top" Rows="1">
+            <ComboBox x:Name="StorySelect" SelectedIndex="0">
+                <ComboBoxItem>Story 1</ComboBoxItem>
+                <ComboBoxItem>Story 2</ComboBoxItem>
+                <ComboBoxItem>Story 3</ComboBoxItem>
+                <ComboBoxItem>Story 4</ComboBoxItem>
+                <ComboBoxItem>*Story 5*</ComboBoxItem>
+            </ComboBox>
+            <Button x:Name="Create" Content="Create New" Click="Create_Click"/>
+            <Button x:Name="Cancel" Content="Cancel" Click="Cancel_Click"/>
+        </UniformGrid>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+            <TextBlock x:Name="StoryText" TextWrapping="Wrap" Text="Welcome to BadLibs" Padding="40,20"
+                       FontSize="24" TextAlignment="Justify" FontFamily="Bookman Old Style"/>
+        </ScrollViewer>
+
+    </DockPanel>
+</Window>

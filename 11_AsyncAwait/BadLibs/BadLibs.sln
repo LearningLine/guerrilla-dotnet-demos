@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadLibs", "BadLibs\BadLibs.csproj", "{253451A5-51D6-4763-8B70-EC7373355529}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadLibs.Test", "BadLibs.Test\BadLibs.Test.csproj", "{C423BE1E-9392-4E35-A393-E441EF27D088}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{253451A5-51D6-4763-8B70-EC7373355529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{253451A5-51D6-4763-8B70-EC7373355529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{253451A5-51D6-4763-8B70-EC7373355529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{253451A5-51D6-4763-8B70-EC7373355529}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C423BE1E-9392-4E35-A393-E441EF27D088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C423BE1E-9392-4E35-A393-E441EF27D088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C423BE1E-9392-4E35-A393-E441EF27D088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C423BE1E-9392-4E35-A393-E441EF27D088}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
