@@ -1,0 +1,107 @@
+Day 2 Summary:
+
+Unit testing
+	Why? - cheaper up front
+	Refactoring support
+	Calls external = not unit test
+	No environment dependencies
+	Parallel and fast runs
+	SOLID principles
+	Documenting code - won't get stale like comments
+	BDD - behavior driven development
+	TDD - test driven
+	AAA - arrange act assert
+	Approvals - a picture is worth a thousand tests
+	Loose coupling - avoid newing up dependencies in tests
+	Mocking DateTime - https://gist.github.com/Foovanadil/9ca4330a436fc2e94d6d
+	Avoiding statics in tests
+		1. Slicing
+		2. Wrapping
+	Code to abstractions, not concrete implementation
+	Dependency injection to get implementation of abstraction
+	Slicing vs Peeling
+	Complex abstraction hierarchy - IOC to hydrate 
+		- write your own
+		- use existing library
+
+Repository
+	Change implementation of DAL
+		-test
+		-change out later
+	IRepository
+		-CRUD
+		-special queries for entity type
+	repo per type? - OK to combine into aggregates
+	<T> base class
+	Unit of Work pattern: Transactional operations across multiple repositories
+	IEnumerable vs IQueryable - repo queries vs user queries
+
+
+Data Binding and MVVM in XAML
+	Binding - connect UI to data
+	3 parts
+		1. Source
+		2. Target
+		3. Path
+	Target = Dependency Property
+	Source = any object
+	Explicit source types
+		1. Source
+		2. RelativeSource
+		3. ElementName
+	DataContext - default if no source specified, inherited
+	Mode - OneWay, TwoWay, OneTime
+	INotifyPropertyChanged - update UI from source data
+	Binding errors - Debug output
+	Change bound value for UI - IValueConverter
+	ItemsControl.ItemsSource - bind a collection
+	Default visual for bound objects
+		1. ToString
+		2. DisplayMemberPath
+		3. DataTemplate on ItemTemplate/ContentTemplate
+	Notify collection add/remove - INotifyCollectionChanged
+		-use ObservableCollection<T>
+	MVVM - Model,View,ViewModel
+	View binds to ViewModel from DataContext
+	No UI types, references in VM
+		-convert bool to Visibility in View
+	Actions on VM = ICommand
+		- Button.Command
+		-DelegateCommand invokes Action in VM
+		-CanExecute disables button
+	Test ViewModel in isolation
+
+
+WebAPI
+	REST
+	Put vs Post
+		-Put= client knows location
+		-Post= server determines location
+	accept headers - client suggests, server decides
+		-content-type
+	Routing - default route
+	Set up routes in Global.asax
+	Controller
+		Http verbs as methods
+		return object - can serialize
+	Serialization as XML or JSON
+	Return Http Status and Location from POST
+	HttpClient for REST - all async, lower level control
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
