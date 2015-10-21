@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Polling.Entities.Poll>
+
+@{
+    ViewBag.Title = "Polls";
+}
+
+<h2>Polls Index</h2>
+
+@Html.ActionLink("Create a new poll","Create")
+<ul>
+    @foreach (var poll in Model)
+    {
+        //<li><a href="/polls/details/@poll.Id">@poll.QuestionText</a></li>
+        <li>@Html.ActionLink(poll.QuestionText, "Details", new {id = poll.Id})</li>
+    }
+</ul>
+
+
+
