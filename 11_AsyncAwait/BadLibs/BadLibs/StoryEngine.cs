@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -14,76 +15,91 @@ namespace BadLibs
 
         public int DelayMs { get; set; }
 
-        public IEnumerable<TextSection> CreateStory(int storyId)
+        public async Task<IEnumerable<TextSection>> CreateStoryAsync(int storyId, CancellationToken cancelToken)
         {
-            IEnumerable<string> sourceWords = GetSourceWords();
+            Debug.WriteLine("Now running on " + Thread.CurrentThread.ManagedThreadId);
 
-            IEnumerable<string> storyFiles = ListStoryFiles();
+            var sourceWordsTask = GetSourceWordsAsync();
+            var storyFilesTask = ListStoryFilesAsync();
+            IEnumerable<string> sourceWords = await sourceWordsTask.ConfigureAwait(false);
+            IEnumerable<string> storyFiles = await storyFilesTask.ConfigureAwait(false);
+            Debug.WriteLine("Now running on " + Thread.CurrentThread.ManagedThreadId);    
 
-            IDictionary<string, IEnumerable<string>> allStories = LoadAllStories(storyFiles);
+            cancelToken.ThrowIfCancellationRequested();
 
-            IEnumerable<string> sections = allStories.First(f => f.Key.Contains(String.Format("Story{0}.txt", storyId))).Value;
+            IDictionary<string, IEnumerable<string>> allStories = await LoadAllStoriesAsync(storyFiles);
 
-            IEnumerable<TextSection> finalGroups = ProcessStory(sourceWords, sections);
+            cancelToken.ThrowIfCancellationRequested();
+
+            IEnumerable<string> sections = null;
+            try
+            {
+                sections = allStories.First(f => f.Key.Contains(String.Format("Story{0}.txt", storyId))).Value;
+            }
+            catch (Exception)
+            {
+                return new TextSection[0];
+            }
+            cancelToken.ThrowIfCancellationRequested();
+
+            IEnumerable<TextSection> finalGroups = await ProcessStoryAsync(sourceWords, sections);
+            cancelToken.ThrowIfCancellationRequested();
 
             return finalGroups;
         }
 
-        private IDictionary<string, IEnumerable<string>> LoadAllStories(IEnumerable<string> storyFiles)
+        private async Task<IDictionary<string, IEnumerable<string>>> LoadAllStoriesAsync(IEnumerable<string> storyFiles)
         {
-            var allStories = new Dictionary<string, IEnumerable<string>>();
+            //var allStories = new Dictionary<string, IEnumerable<string>>();
+            var allStories = new ConcurrentDictionary<string, IEnumerable<string>>();
+            var tasks = new List<Task>();
+
             foreach (string file in storyFiles)
             {
-                allStories.Add(file, GetStorySections(file));
+                tasks.Add(GetStorySectionsAsync(file).ContinueWith(t => allStories.TryAdd(file, t.Result)));
+
             }
-            //Parallel.ForEach(storyFiles, file => { allStories.TryAdd(file, GetStorySections(file)); });
+            await Task.WhenAll(tasks.ToArray());
+
+            //Parallel.ForEach(storyFiles, file =>
+            //{
+            //    allStories.TryAdd(file, GetStorySections(file));
+            //});
             return allStories;
         }
 
-        private IEnumerable<string> GetSourceWords()
+        private async Task<string[]> GetSourceWordsAsync()
         {
-            return Task.Run(() =>
-            {
-                Thread.Sleep(DelayMs);
-                return File.ReadAllLines(@"Data\dictionary.txt");
-            }).Result;
+            await Task.Delay(DelayMs);
+            return File.ReadAllLines(@"Data\dictionary.txt");
         }
 
-        private IEnumerable<string> ListStoryFiles()
+        private async Task<IEnumerable<string>> ListStoryFilesAsync()
         {
-            return Task.Run(() =>
-            {
-                Thread.Sleep(DelayMs);
-                return Directory.GetFiles(@"Data\Stories\", "*.txt");
-            }).Result;
+            await Task.Delay(DelayMs);
+            return Directory.GetFiles(@"Data\Stories\", "*.txt");
         }
 
-        private IEnumerable<string> GetStorySections(string storyFile)
+        private async Task<IEnumerable<string>> GetStorySectionsAsync(string storyFile)
         {
-            return Task.Run(() =>
-            {
-                Thread.Sleep(DelayMs);
-                string filePath = storyFile;
-                var storySource = File.ReadAllText(filePath);
+            await Task.Delay(DelayMs);
+            string filePath = storyFile;
+            var storySource = File.ReadAllText(filePath);
 
-                return storySource.Split(new[] { '^' }, StringSplitOptions.None);
-            }).Result;
+            return storySource.Split(new[] { '^' }, StringSplitOptions.None);
         }
 
-        private IEnumerable<TextSection> ProcessStory(IEnumerable<string> sourceWords, IEnumerable<string> sections)
+        private async Task<IEnumerable<TextSection>> ProcessStoryAsync(IEnumerable<string> sourceWords, IEnumerable<string> sections)
         {
-            return Task.Run(() =>
-            {
-                Thread.Sleep(DelayMs);
-                var finalGroups = new List<TextSection> { new TextSection(sections.First()) };
+            await Task.Delay(DelayMs);
+            var finalGroups = new List<TextSection> { new TextSection(sections.First()) };
 
-                foreach (string section in sections.Skip(1))
-                {
-                    finalGroups.Add(new TextSection(sourceWords.ElementAt(_rand.Next(sourceWords.Count() - 1))) { Format = true });
-                    finalGroups.Add(new TextSection(section));
-                }
-                return finalGroups;
-            }).Result;
+            foreach (string section in sections.Skip(1))
+            {
+                finalGroups.Add(new TextSection(sourceWords.ElementAt(_rand.Next(sourceWords.Count() - 1))) { Format = true });
+                finalGroups.Add(new TextSection(section));
+            }
+            return finalGroups;
         }
     }
 }

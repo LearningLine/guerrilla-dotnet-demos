@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -24,7 +25,7 @@ namespace BadLibs
     public partial class MainWindow : Window
     {
         private TimeClock _clock;
-        private StoryEngine _engine = new StoryEngine { DelayMs = 1 };
+        private StoryEngine _engine = new StoryEngine { DelayMs = 1000 };
         private CancellationTokenSource _cancelSource;
 
         public MainWindow()
@@ -33,11 +34,24 @@ namespace BadLibs
 
             _clock = new TimeClock(this, () => Time.Text = DateTime.Now.ToLongTimeString());
         }
-        
-        private void Create_Click(object sender, RoutedEventArgs e)
-        {
-            var storyText = _engine.CreateStory(StorySelect.SelectedIndex + 1);
 
+        private async void Create_Click(object sender, RoutedEventArgs e)
+        {
+            //Task.Run(() => // No Worky!
+            //{
+            _cancelSource = new CancellationTokenSource();
+
+            IEnumerable<TextSection> storyText;
+            try
+            {
+                Debug.WriteLine("Now running on " + Thread.CurrentThread.ManagedThreadId);
+                storyText = await _engine.CreateStoryAsync(StorySelect.SelectedIndex + 1, _cancelSource.Token);
+                Debug.WriteLine("Now running on " + Thread.CurrentThread.ManagedThreadId);
+            }
+            catch (OperationCanceledException)
+            {
+                return;
+            }
             StoryText.Inlines.Clear();
             StoryText.Inlines.AddRange(storyText.Select(ts =>
             {
@@ -49,6 +63,7 @@ namespace BadLibs
                 }
                 return run;
             }));
+            //});
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
