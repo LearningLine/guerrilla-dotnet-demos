@@ -9,9 +9,7 @@ namespace IssueTracker.MongoData
 
         public IssueTrackerContext()
         {
-            MongoClient client = new MongoClient("mongodb://localhost:27017");
-            var server = client.GetServer();
-            _database = server.GetDatabase("Support");
+            _database = new MongoClient("mongodb://localhost:27017").GetServer().GetDatabase("Support");
         }
 
         public MongoCollection<Issue> Issues

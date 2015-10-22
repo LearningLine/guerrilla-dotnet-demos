@@ -5,7 +5,8 @@ namespace IssueTracker.Data
 {
     public class Issue
     {
-        public int Id { get; set; }
+
+        public ObjectId Id { get; set; }
         public string Text { get; set; }
         public int ReportCount { get; set; }
         public List<Resolution> Fixes { get; set; }

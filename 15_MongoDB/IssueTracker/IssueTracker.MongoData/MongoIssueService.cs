@@ -26,8 +26,7 @@ namespace IssueTracker.MongoData
         {
             get
             {
-                // TODO: get issues with no fix
-                return new List<Issue>();
+                return _context.Issues.AsQueryable().Where(i => !i.Fixes.Any());
             }
         }
 
