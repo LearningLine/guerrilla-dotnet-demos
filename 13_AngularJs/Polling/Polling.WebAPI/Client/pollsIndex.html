@@ -1,0 +1,8 @@
+﻿<div ng-controller="PollsIndexController as pc">
+    <ul>
+        <li ng-repeat="poll in pc.polls">
+            <a href="#/poll/{{poll.Id}}">{{poll.QuestionText}}</a>
+        </li>
+    </ul>
+</div>
+<a href="#/poll/create">Create a new poll</a>

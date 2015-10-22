@@ -1,0 +1,23 @@
+﻿@model Polling.Entities.Poll
+
+@{
+    ViewBag.Title = "Vote";
+}
+
+<h1>@Model.QuestionText</h1>
+
+<form method="POST" action="@Url.Action("Vote")">
+    <input type="hidden" name="pollId" value="@Model.Id"/>
+    <div>
+        @foreach(var choice in Model.Choices)
+        { 
+            <div>
+                <input type="radio" name="choiceId" value="@choice.Id"/>
+                <label>@choice.ChoiceText</label>
+            </div>
+        }
+    </div>
+    <div>
+        <input type="submit" value="Vote" />
+    </div>
+</form>

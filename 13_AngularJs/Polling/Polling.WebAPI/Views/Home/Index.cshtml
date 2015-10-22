@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Polls</title>
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
+</head>
+<body ng-app="app" ng-cloak>
+
+    <div ng-view></div>
+
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/Client/app.js"></script>
+    <script src="~/Client/CalcController.js"></script>
+    <script src="~/Client/PollsService.js"></script>
+    <script src="~/Client/PollCreateController.js"></script>
+    <script src="~/Client/PollDetailsController.js"></script>
+    <script src="~/Client/PollsIndexController.js"></script>
+    <script src="~/Client/PollVoteController.js"></script>
+</body>
+</html>

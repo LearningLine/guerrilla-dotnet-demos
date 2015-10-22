@@ -1,0 +1,17 @@
+﻿<div ng-controller="PollVoteController as vm">
+    <h1>{{vm.poll.QuestionText}}</h1>
+    <div>
+        <input type="hidden" name="pollId" value="{{vm.poll.Id}}"/>
+        <div ng-repeat="choice in vm.poll.Choices">
+            <div>
+                <input type="radio" ng-model="choiceId" value="{{choice.Id}}"/>
+                <label>{{choice.ChoiceText}}</label>
+            </div>
+        </div>
+        <div>
+            <button ng-click="vm.vote">Vote</button>
+        </div>
+    </div>
+</div>
+
+

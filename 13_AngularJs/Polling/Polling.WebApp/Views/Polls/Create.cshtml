@@ -1,0 +1,31 @@
+﻿@model Polling.Entities.Poll
+
+@{
+    ViewBag.Title = "Create new Poll";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@* Use T4MVC instead of the magic string  *@
+<form method="POST" action="@Url.Action("Create")">
+    <div>
+        @*<label for="QuestionText"/>*@
+        @Html.LabelFor(m => m.QuestionText)
+        @Html.TextBoxFor(m => m.QuestionText)
+        @Html.ValidationMessageFor(m => m.QuestionText)
+    </div>
+    <div>
+        @for (int i = 0; i < 2; i++)
+        {
+            <div>
+                @Html.LabelFor(m => m.Choices[i].ChoiceText)
+                @Html.TextBoxFor(m => m.Choices[i].ChoiceText)
+                @Html.ValidationMessageFor(m => m.Choices[i].ChoiceText)
+            </div>
+        }
+    </div>
+    <div>
+        <input type="submit" value="Create"/>
+    </div>
+
+</form>
