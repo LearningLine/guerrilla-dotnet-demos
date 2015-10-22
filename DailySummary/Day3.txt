@@ -1,0 +1,173 @@
+Day 3 Summary
+
+Task Parallel Library
+Why multithreading
+	"Free lunch is Over" - clockspeed stopped going up, more cores
+Task represents a unit of work (delegate)
+When does it run, what thread?
+	Task Scheduler takes care of that
+Return value?
+	Task<int> - returns a int
+	in the .Result <- blocks if not completed
+	can call Wait() if doesn thave return
+Exceptions?
+	throws an AggregateException
+If we ignore? 
+	in .NET 4 - crashes
+	in 4.5 - TaskUnobservedException
+How to cancel?
+	CancellationTokenSource cts
+	pass the cts.Token to the Task.Run or Start
+	cooperative if the task doesn't listen, it won't stop
+Dependencies between tasks
+	Chained
+		t.ContinueWith(t => {... });
+	Children
+		Task.Factory.StartNew(child => {}, TaskCreationOptions.AttachedToParent)
+		Task.Run actually DenyChildAttach by default
+	Nested (no relationship)
+
+
+
+Thread Safety and Concurrent Data Structures
+	Get the other To side to
+	Have problems when
+		Shared data
+		Multiple threads
+		At least one writer
+		Non-atomic write
+	Writing ints
+		Interlocked.Increment(ref num);
+		Also on Interlocked: Add, Exhange, CompareExchange
+	What if more than one operation
+		Monitor.Enter Monitor.Exit, (or lock) around the critical section of code
+			BOTH READING AND WRITING
+		should prefer TryEnter
+		Be careful with lock keyword
+		Pass in a reference object (make sure it is private)
+	If lots of readers and few writers?
+		ReaderWriterLockSlim (Slim means no writer starvation)
+	What if inter -process?
+		Semaphore
+		Mutex (like semaphore with count of 1)
+		MRE, ARE
+	Lock free Data Structures
+		ConcurrentDictionary, ConcurrentQueue, ConcurrentStack, ConcurrentBag
+		(no List, because "it is hard")
+		adds new atomic ops: TryAdd, TryGetOrAdd, TryAddOrUpdate, etc.
+	Other new stuff In .NET 4
+		ManualResetEventSlim - managed only, not kernel
+		CountdownEvent
+		Barrier
+	
+
+Async and Await
+	Keywords introduced in C#5
+	Making async easy
+		Instead of nested ContinueWith's
+	async keyword is placed? on method declaration
+		Must return Task, Task<T> or void (avoid if possible)
+	await keyword
+		Inside method body before an async method call that returns Task
+	Even though the method says its returning a Task<T>, we return the T
+	
+	If we want to kick off multiple things in parallel
+		Parallel.ForEach (also Parallel.For, and Parallel.Invoke)
+		advantage: throughput increased, utilizing more cores
+			------------------
+				[_]       
+			 - - - - - - - - -
+				[_]
+			------------------
+		Still blocked while the work was happening
+		way 2:
+		Create the tasks, don't await yet, and hold on to them
+			Task.WaitAny, Task.WaitAll these block
+			Task.WhenAny or Task.WhenAll return a task which can be awaited
+
+	
+JavaScript
+	interpreted language, each browser has their own, Chromes = V8
+	Node based off V8 server side JS
+	make sure you declare your variables with var, otherwise global
+	scope - function
+	function inside a function can capture outer functions state
+	every object has a prototype
+		looks at instance, then prototype chain
+		existing instance gains the prototype
+			dynamic dispatch
+	most common library - jQuery
+		normalize the DOM (selection and manipulation)
+		uses a fluent API
+		$('.className').fadeOut();
+	javascript files should be at the bottom so the UI is rendered first
+	$(document).ready(function() {
+	});
+	or 
+	$(function() {
+	});	
+
+	$.ajax {
+	};
+
+	other libraries
+		moment.js
+		underscore or lodash
+		
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
