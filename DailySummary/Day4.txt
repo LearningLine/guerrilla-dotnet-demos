@@ -1,0 +1,128 @@
+Day 4
+
+Angular.js
+
+	Pattern => MVC on client
+	CRUD app focused
+
+	html extended through directives - ng-app
+	Controllers
+		1. $scope = OLD
+		2. var vm = this = NEW
+
+	bind data with {{ ... }}
+	$scope.apply to apply updates from data to UI
+
+	controller calls services resolved through DI
+	built for unit testing
+
+	function wrapped IIFE - removed from global scope
+		(function () { ... })()
+
+	modules - encapsulate related code
+
+	Routing
+		client navigation with #
+		no page reload
+		ng-view directive to set up routes
+		ng-route off module
+
+
+OWIN/Katana
+
+	Open Web Interface for .NET
+	Katana = MS implementation of OWIN
+
+	Goal
+		get away from System.Web
+
+	node.js like - opt in to everything
+	
+	Katana request goes through middleware 
+	Middleware use Func<IDictionary<string, object>, Task>
+		- aliased as AppFunc
+
+	Include custom middleware
+		App.Use
+		App.Map - split routing conditionally
+
+	Katana runs outside IIS
+		- can self host
+		- runs off Windows
+
+	Middleware available out of box
+		-logging
+		-CORS
+
+
+Mongo
+
+	NoSQL
+	 - anything not using SQL queries
+	
+	CAP theorem - any 2
+		Consistency
+		Availability
+		Partition Tolerance
+
+	Column
+	Key-Value
+	Document -- MongoDB
+
+	Don't need to just pick one
+	Don't need to totally replace your relational DB
+
+	ACID - not guaranteed with NoSQL
+		Atomicity
+		Consistency
+		Integrity
+		Durability
+
+	Free - Open Source
+	Fast easy install
+	
+	Relational = Scale UP = vertical
+	NoSQL = Scale OUT = horizontal
+
+	C:\data\db\ - or pick your own
+	mongod.exe - process daemon
+	mongo.exe - query shell
+
+	MongoVUE - GUI
+
+	Data stored as BSON files = Binary encoded JSON
+
+	Collection schema is implicit only - define in code
+
+	Can change schema defined in code
+		- no problem with adds
+		- changes to types can cause failures deserializing
+
+	Access MongoDB through C# driver
+		- LINQ querying
+	
+	Mongo query syntax - powerful ad-hoc queries
+		db.MyCollection.find( { TheField : { $eq : "Hello" } } )
+
+
+CHALLENGES!
+
+	Hold down enter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

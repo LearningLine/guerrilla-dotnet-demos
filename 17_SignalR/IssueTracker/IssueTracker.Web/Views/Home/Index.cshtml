@@ -1,0 +1,72 @@
+﻿@model IssueTracker.Web.Models.IssuesViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="container body-content">
+        <div>
+            <select id="issueList" size="10">
+                @foreach (var issue in Model.ActiveIssues)
+                {
+                    <option value="@issue.Id">
+                        <span>
+                            @issue.Text
+                        </span>
+                    </option>
+                }
+            </select>
+        </div>
+        <button id="report">I Have This Issue</button>
+        <button id="fix">This Issue Is Fixed</button>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/signalr")
+    @Scripts.Render("~/signalr/hubs")
+
+<script>
+    $(function () {
+        var disableFixed = function (id, warn) {
+            if (warn) {
+                alert("An issue you reported was fixed!");
+            }
+            var $issue = $('#issueList option[value="' + id + '"]');
+            $issue.prop("selected", false);
+            $issue.attr("disabled", "disabled");
+            $issue.css("color", "green");
+        };
+        var highlightIssue = function() {
+            $("#issueList option:selected").css("color", "red");
+        }
+
+
+        var hubProxy = $.connection.tracking;
+        hubProxy.logging = true;
+        hubProxy.client.issueFixed = disableFixed;
+        $.connection.hub.start().done(function () {
+            $("#report").click(function () {
+                var selectedValue = $("#issueList option:selected").val();
+                hubProxy.server.reportIssue(selectedValue);
+                highlightIssue();
+            });
+            $("#fix").click(function () {
+                var selectedValue = $("#issueList option:selected").val();
+                hubProxy.server.resolveIssue(selectedValue);
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
