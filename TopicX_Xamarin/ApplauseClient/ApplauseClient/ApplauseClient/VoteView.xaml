@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:ApplauseClient;assembly=ApplauseClient"
+             x:Class="ApplauseClient.VoteView">
+
+	<ContentPage.BindingContext>
+		<viewModel:ApplauseViewModel />
+	</ContentPage.BindingContext>
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<viewModel:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
+	<Grid>
+		<StackLayout x:Name="overlay" Padding="10" VerticalOptions="Center"
+					 IsVisible="{Binding IsApplauding, Converter={StaticResource InverseBooleanConverter}}">
+			<Label Text="Get ready to applaud for" VerticalOptions="Center" HorizontalOptions="Center" />
+			<Label Text="{Binding VotingFor}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="20" />
+		</StackLayout>
+
+		<StackLayout IsVisible="{Binding IsApplauding}" Padding="10">
+			<Label Text="{Binding VoteCount}"/>
+			<Button Command="{Binding ApplaudCommand}" FontSize="24"
+					Text="Applaud" VerticalOptions="FillAndExpand" />
+		</StackLayout>
+	</Grid>
+</ContentPage>
