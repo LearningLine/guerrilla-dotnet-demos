@@ -1,7 +1,7 @@
 ﻿<div ng-controller="PollDetailsController as vm">
     <h1>{{vm.poll.QuestionText}}</h1>
     <ul>
-        <li ng-repeat="choice in vm.poll.Choices">{{choice.ChoiceText}} ({{choice.Votes}})</li>
+        <li ng-repeat="choice in vm.poll.Choices">{{choice.ChoiceText}} ({{choice.Votes.length}})</li>
     </ul>
     <a href="#/poll/{{vm.poll.Id}}/vote">Vote on this poll</a>
 </div>

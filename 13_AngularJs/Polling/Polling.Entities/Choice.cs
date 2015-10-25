@@ -17,7 +17,7 @@ namespace Polling.Entities
         [IgnoreDataMember]
         public int PollId { get; set; }
 
-        [IgnoreDataMember]
+        [DataMember]
         public ICollection<Vote> Votes { get; set; }
 
         [DataMember]

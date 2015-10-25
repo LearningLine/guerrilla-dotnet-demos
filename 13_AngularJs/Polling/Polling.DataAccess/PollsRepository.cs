@@ -9,7 +9,7 @@ using NLog;
 
 namespace Polling.DataAccess
 {
-    public class PollsRepository : EFRepository<Poll>, IPollsRepository
+    public class PollsRepository : EfRepository<Poll>, IPollsRepository
     {
         private readonly PollingContext pollingContext;
         static Logger logger = LogManager.GetLogger("PollsContext");
@@ -23,8 +23,7 @@ namespace Polling.DataAccess
         public override Poll GetById(int id)
         {
             var poll = pollingContext.Polls
-                .Include(p => p.Choices)
-                .Include(p => p.Votes)
+                .Include(p => p.Choices.Select(c => c.Votes))
                 .FirstOrDefault(p => p.Id == id);
 
             return poll;

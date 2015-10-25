@@ -14,14 +14,18 @@
         function getById(id) {
             return $http.get('http://localhost:2000/api/polls/' + id);
         }
+        function create(pollData) {
+            return $http.post('http://localhost:2000/api/polls/create', pollData);
+        }
         function vote(voteData) {
             return $http.post('http://localhost:2000/api/polls/' + id + '/vote', voteData);
         }
 
-
         return {
             getAll: getAll,
-            getById: getById
+            getById: getById,
+            create: create,
+            vote: vote
         };
 
     }

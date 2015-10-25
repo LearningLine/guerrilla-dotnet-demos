@@ -1,1 +1,17 @@
-﻿
+﻿<div ng-controller="PollCreateController as vm">
+    <div>
+        <label>Question:</label>
+        <input type="text" ng-model="vm.poll.questionText" />
+    </div>
+    <div ng-repeat="choice in vm.poll.choices">
+        <label>Choice {{$index+1}}:</label>
+        <input type="text" ng-model="choice.choiceText"/>
+    </div>
+    <div>
+        <input type="button" value="Add Choice" ng-click="vm.addChoice()" />
+    </div>
+    <div>
+        <input type="button" value="Create" ng-click="vm.create()"/>
+    </div>
+
+</div>

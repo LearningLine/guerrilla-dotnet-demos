@@ -4,12 +4,12 @@ using System.Linq;
 
 namespace Polling.DataAccess
 {
-    public class EFRepository<T> : IRepository<T> where T : class
+    public class EfRepository<T> : IRepository<T> where T : class
     {
         protected readonly DbContext context;
         private DbSet<T> set;
 
-        public EFRepository(DbContext context)
+        public EfRepository(DbContext context)
         {
             this.context = context;
 

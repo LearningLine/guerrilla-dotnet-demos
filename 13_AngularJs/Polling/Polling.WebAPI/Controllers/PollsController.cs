@@ -1,37 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
-using System.Web.OData;
-using System.Web.OData.Query;
 using Polling.DataAccess;
 using Polling.Entities;
 
 namespace Polling.WebAPI.Controllers
 {
-    public class PollsOldController : ODataController
+    public class PollsController : ApiController
     {
         private readonly IPollsRepository repo;
 
-        public PollsOldController()
+        public PollsController()
         {
             repo = new PollsRepository(new PollingContext());
         }
-        public PollsOldController(IPollsRepository repo)
+        public PollsController(IPollsRepository repo)
         {
             this.repo = repo;
         }
 
-        [EnableQuery(AllowedQueryOptions = AllowedQueryOptions.All)]
-        public IQueryable<Poll> GetAll()
+        public IEnumerable<Poll> GetAll()
         {
-            return repo.All;
-        }
-
-        [EnableQuery]
-        public SingleResult<Poll> Get([FromODataUri] int key)
-        {
-            IQueryable<Poll> result = repo.All.Where(p => p.Id == key);
-            return SingleResult.Create(result);
+            return repo.GetAll();
         }
 
         public IHttpActionResult GetById(int id)
@@ -44,6 +37,41 @@ namespace Polling.WebAPI.Controllers
 
             return Ok(poll);
         }
-        
+
+        //public Poll GetByText(string id)
+        //{
+        //    return repo.GetAll().FirstOrDefault(p => p.QuestionText.Contains(id));
+        //}
+
+        public IHttpActionResult Post(Poll poll)
+        {
+            repo.Add(poll);
+            repo.Save();
+
+            return Created(Request.RequestUri + poll.Id.ToString(),poll);
+        }
+
+        public IHttpActionResult Put(int id, Poll poll)
+        {
+            var dbPoll = repo.GetById(id);
+
+            if (dbPoll == null)
+            {
+                return NotFound();
+            }
+                
+            dbPoll.QuestionText = poll.QuestionText;
+            repo.Save();
+
+            return Ok(poll);
+        }
+
+        public IHttpActionResult Delete(int id)
+        {
+            repo.RemoveById(id);
+            repo.Save();
+
+            return Ok();
+        }
     }
 }

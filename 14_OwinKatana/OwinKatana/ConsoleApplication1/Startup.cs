@@ -12,19 +12,22 @@ namespace ConsoleApplication1
     {
         public void Configuration(IAppBuilder app)
         {
-            Func<IOwinContext, Task> handler = ctx =>
-            {
-                Task.Delay(TimeSpan.FromSeconds(5)).Wait();
-                ctx.Response.ContentType = "text/plain";
-                return ctx.Response.WriteAsync("Hello world");
-            };
-            app.Map("/log", a=> {
+
+            app.Map("/log", a => {
                 a.Use<LoggingMiddleware>();
-                a.Run(handler);
+                Func<IOwinContext, Task> p = HandleResponse;
+                a.Run(p);
             });
             app.Use<MungeTheBodyMiddleware>();
-            app.Run(handler);
+            app.Run(HandleResponse);
 
+        }
+
+        async Task<Task> HandleResponse(IOwinContext ctx)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(5));
+            ctx.Response.ContentType = "text/plain";
+            return ctx.Response.WriteAsync("Hello world");
         }
     }
 }
