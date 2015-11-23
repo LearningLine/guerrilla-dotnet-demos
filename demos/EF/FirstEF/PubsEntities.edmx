@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PubsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PubsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="authors">
           <Key>
             <PropertyRef Name="au_id" />
@@ -28,6 +28,7 @@
           <Property Name="city" Type="varchar" MaxLength="20" />
           <Property Name="state" Type="char" MaxLength="2" />
           <Property Name="country" Type="varchar" MaxLength="30" />
+          <Property Name="planet" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="titleauthor">
           <Key>
@@ -90,6 +91,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetTitlesByCountrySlim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="country" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="PubsModelStoreContainer">
           <EntitySet Name="authors" EntityType="Self.authors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="publishers" EntityType="Self.publishers" Schema="dbo" store:Type="Tables" />
@@ -108,8 +112,7 @@
             <End Role="titles" EntitySet="titles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PubsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -138,6 +141,7 @@
           <Property Name="state" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="titles" Relationship="Self.FK__titles__pub_id__1A14E395" FromRole="publishers" ToRole="titles" />
+          <Property Name="planet" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="titleauthor">
           <Key>
@@ -159,7 +163,7 @@
           <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="type" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="pub_id" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" ConcurrencyMode="Fixed" />
           <Property Name="advance" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="royalty" Type="Int32" />
           <Property Name="ytd_sales" Type="Int32" />
@@ -221,7 +225,28 @@
             <End Role="titles" EntitySet="Titles" />
             <End Role="titleauthor" EntitySet="titleauthors" />
           </AssociationSet>
+          <FunctionImport Name="GetTitlesByCountrySlim" ReturnType="Collection(PubsModel.GetTitlesByCountrySlim_Result)">
+            <Parameter Name="country" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="GetTitlesByCountrySlim_Result">
+          <Property Type="String" Name="title_id" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="type" Nullable="false" MaxLength="12" />
+          <Property Type="String" Name="pub_id" Nullable="true" MaxLength="4" />
+          <Property Type="Decimal" Name="price" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="advance" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="royalty" Nullable="true" />
+          <Property Type="Int32" Name="ytd_sales" Nullable="true" />
+          <Property Type="String" Name="notes" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="pubdate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="pub_id1" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="pub_name" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="city" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="state" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="country" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="planet" Nullable="false" MaxLength="10" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -246,6 +271,7 @@
           <EntitySetMapping Name="Publishers">
             <EntityTypeMapping TypeName="PubsModel.Publisher">
               <MappingFragment StoreEntitySet="publishers">
+                <ScalarProperty Name="planet" ColumnName="planet" />
                 <ScalarProperty Name="pub_id" ColumnName="pub_id" />
                 <ScalarProperty Name="pub_name" ColumnName="pub_name" />
                 <ScalarProperty Name="city" ColumnName="city" />
@@ -280,6 +306,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetTitlesByCountrySlim" FunctionName="PubsModel.Store.GetTitlesByCountrySlim">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PubsModel.GetTitlesByCountrySlim_Result">
+                <ScalarProperty Name="title_id" ColumnName="title_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="pub_id" ColumnName="pub_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="advance" ColumnName="advance" />
+                <ScalarProperty Name="royalty" ColumnName="royalty" />
+                <ScalarProperty Name="ytd_sales" ColumnName="ytd_sales" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="pubdate" ColumnName="pubdate" />
+                <ScalarProperty Name="pub_id1" ColumnName="pub_id1" />
+                <ScalarProperty Name="pub_name" ColumnName="pub_name" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="planet" ColumnName="planet" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -12,6 +12,8 @@ namespace FirstEF
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class PubsEntities : DbContext
     {
@@ -29,5 +31,14 @@ namespace FirstEF
         public virtual DbSet<Publisher> Publishers { get; set; }
         public virtual DbSet<titleauthor> titleauthors { get; set; }
         public virtual DbSet<Title> Titles { get; set; }
+    
+        public virtual ObjectResult<GetTitlesByCountrySlim_Result> GetTitlesByCountrySlim(string country)
+        {
+            var countryParameter = country != null ?
+                new ObjectParameter("country", country) :
+                new ObjectParameter("country", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetTitlesByCountrySlim_Result>("GetTitlesByCountrySlim", countryParameter);
+        }
     }
 }

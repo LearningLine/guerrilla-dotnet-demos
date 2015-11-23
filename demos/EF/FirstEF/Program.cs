@@ -13,20 +13,28 @@ namespace FirstEF
         {
             using (var ctx = new PubsEntities())
             {
-                foreach (var publisher in ctx.Publishers.Include(p => p.titles)
-                                             .Where(p => p.country == "USA"))
+                foreach (var title in ctx.GetTitlesByCountrySlim("USA"))
                 {
-                    foreach (Title title in publisher.titles)
-                    {
-                        Console.WriteLine("{0} costs {1:C}", title.Name, title.price);
-                        if (title.price != null)
-                        {
-                            title.price /= 2;
-                        }
-                    }
+                    Console.WriteLine(title.title);
                 }
+            //    foreach (var publisher in ctx.Publishers.Include(p => p.titles)
+            //                                 .Where(p => p.country == "USA"))
+            //    {
+            //        Console.WriteLine(new Publisher().GetType());
+            //        Console.WriteLine(publisher.GetType());
+            //        foreach (Title title in publisher.titles)
+            //        {
+            //            Console.WriteLine("{0} costs {1:C}", title.Name, title.price);
+            //            if (title.price != null)
+            //            {
+            //                title.price /= 2;
+            //            }
+            //        }
+            //    }
+            //    Console.WriteLine("waiting ...");
+            //    Console.ReadLine();
 
-                ctx.SaveChanges();
+            //    ctx.SaveChanges();
             }
         }
 
