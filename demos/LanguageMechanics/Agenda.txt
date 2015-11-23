@@ -1,0 +1,15 @@
+00:05 1) Events			
+
+00:20 2) Foreach
+
+00:25 3) Iterator methods
+
+00:40 4) Anonymous methods
+
+00:55 5) Property Initialisers
+
+00:60 6) Extension Methods
+
+00:90 8) Dynamic
+
+http://msdn.microsoft.com/en-us/magazine/cc163344.aspx
