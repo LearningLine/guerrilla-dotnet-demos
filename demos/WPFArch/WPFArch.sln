@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPictureLibrary", "TestP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroundUpWpf", "GroundUpWpf\GroundUpWpf.csproj", "{E5798B55-63A1-4E4E-985E-4024B22D1E3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleXAML", "SimpleXAML\SimpleXAML.csproj", "{A20715AB-4328-4626-A02C-00F8D77DA5DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurfaceLite", "SurfaceLite\SurfaceLite.csproj", "{3864F3E1-23BE-40F4-95CC-C84916D6865E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{E5798B55-63A1-4E4E-985E-4024B22D1E3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5798B55-63A1-4E4E-985E-4024B22D1E3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5798B55-63A1-4E4E-985E-4024B22D1E3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A20715AB-4328-4626-A02C-00F8D77DA5DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A20715AB-4328-4626-A02C-00F8D77DA5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A20715AB-4328-4626-A02C-00F8D77DA5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A20715AB-4328-4626-A02C-00F8D77DA5DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3864F3E1-23BE-40F4-95CC-C84916D6865E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3864F3E1-23BE-40F4-95CC-C84916D6865E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3864F3E1-23BE-40F4-95CC-C84916D6865E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3864F3E1-23BE-40F4-95CC-C84916D6865E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

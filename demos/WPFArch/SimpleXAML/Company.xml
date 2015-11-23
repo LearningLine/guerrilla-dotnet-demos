@@ -1,0 +1,18 @@
+﻿<Company xmlns="clr-namespace:SimpleXAML;assembly=SimpleXAML"
+         Name="Acme Corp.">
+  <Company.Owner>
+    <Person Name="Daniel" Age="{RandomValue Min=20, Max=52}" />
+  </Company.Owner>
+  
+  <Person Name="Mino" Age="{RandomValue  Min=20, Max=52}" Company.EmployeeId="87347374"/>
+  <Person Name="Andy" Age="{RandomValue  Min=20, Max=52}" Company.EmployeeId="63524434"/>
+  <Person Name="Rune" Age="{RandomValue  Min=20, Max=52}" Company.EmployeeId="98439832"/>
+
+</Company>
+
+<!--<Window>
+  <Canvas>
+    <Ellipse Width="100" Height="250" />
+    <Slider Width="100" />
+  </Canvas>
+</Window>-->
