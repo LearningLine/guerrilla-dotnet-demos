@@ -32,6 +32,8 @@ namespace UnviersityEdu.Data.Migrations
 
 			context.Enrollments.ToList().ForEach(e => context.Enrollments.Remove(e));
 
+		    context.SaveChanges();
+
 			context.Enrollments.Add(new Enrollment()
 			{
 				CourseID = context.Courses.First().CourseID,

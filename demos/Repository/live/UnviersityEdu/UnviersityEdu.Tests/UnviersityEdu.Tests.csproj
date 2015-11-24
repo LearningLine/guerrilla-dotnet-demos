@@ -92,6 +92,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UnviersityEdu.Objects\UnviersityEdu.Objects.csproj">
+      <Project>{52A614F8-A6CF-4C60-9F5C-8E4100327846}</Project>
+      <Name>UnviersityEdu.Objects</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UnviersityEdu\UnviersityEdu.csproj">
       <Project>{F2EC654A-6475-4825-A284-4665FAEE4984}</Project>
       <Name>UnviersityEdu</Name>

@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EfCourseRepository.cs" />
+    <Compile Include="EfUnitofWorkFactory.cs" />
     <Compile Include="Migrations\201511241508429_initial.cs" />
     <Compile Include="Migrations\201511241508429_initial.Designer.cs">
       <DependentUpon>201511241508429_initial.cs</DependentUpon>
