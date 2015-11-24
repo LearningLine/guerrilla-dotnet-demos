@@ -1,0 +1,48 @@
+Xml messages via SOAP! Via SOAP!
+----------------------
+
+HTTP -> 
+POST /myservice.asmx Body:
+
+<envelop>
+   <headers>
+       <action name="UpdateCustomer" />
+   </headers>
+   <body>
+      <customer ... />
+   </body>
+
+</envelop>
+
+
+add to basket
+login
+add to basket
+add to basket
+add to basket
+checkout
+logout
+
+
+
+kjsjds
+34jssi
+o994
+u213
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
