@@ -1,0 +1,14 @@
+﻿<Application x:Class="WpfTheRightWay.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfTheRightWay"
+             xmlns:viewModels="clr-namespace:WpfTheRightWay.ViewModels"
+             xmlns:views="clr-namespace:WpfTheRightWay.Views"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <DataTemplate DataType="{x:Type viewModels:PictureViewModel}">
+            <views:PictureView/>
+        </DataTemplate>
+         
+    </Application.Resources>
+</Application>
