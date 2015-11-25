@@ -37,6 +37,11 @@ namespace WpfTheRightWay.ViewModels
             set
             {
                 url = value;
+                if (GoCommand != null)
+                {
+                    GoCommand.UpdateCanExecute(Uri.IsWellFormedUriString(url,UriKind.Absolute));
+                }
+
                 OnPropertyChanged();
             }
         }

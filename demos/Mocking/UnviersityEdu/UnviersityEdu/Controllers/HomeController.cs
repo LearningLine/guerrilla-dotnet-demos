@@ -21,13 +21,23 @@ namespace UnviersityEdu.Controllers
 	    }
 		public ActionResult Index()
 		{
-			Console.WriteLine("Getting courses");
-			var courses = db.CourseRepository
-                .All
-                .HasAtLeastCredits(2)
-                .ToArray();
+		    try
+		    {
+		        Console.WriteLine("Getting courses");
+		        var courses = db.CourseRepository
+		            .All
+		            .HasAtLeastCredits(2)
+		            .ToArray();
 
-			return View(courses);
+		        //db.Commit();
+
+		        return View(courses);
+		    }
+		    catch (RespositoryException repoException)
+		    {
+		        return Redirect("/offline/noMonkey");
+		    }
+			
 		}
 	}
 }
