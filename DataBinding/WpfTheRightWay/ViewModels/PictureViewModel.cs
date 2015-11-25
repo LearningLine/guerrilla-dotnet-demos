@@ -11,7 +11,7 @@ namespace WpfTheRightWay.ViewModels
     public class PictureViewModel : ViewModel
     {
         private string url;
-        private WebPageImageExtractor imageExtractor = new WebPageImageExtractor();
+        private readonly WebPageImageExtractor imageExtractor = new WebPageImageExtractor();
 
         public PictureViewModel()
         {
