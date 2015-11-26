@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnviersityEdu.Data", "Unvie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnviersityEdu.Objects", "UnviersityEdu.Objects\UnviersityEdu.Objects.csproj", "{52A614F8-A6CF-4C60-9F5C-8E4100327846}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollmentClient", "EnrollmentClient\EnrollmentClient.csproj", "{360296C4-CE03-4013-AC87-FE482599C946}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{52A614F8-A6CF-4C60-9F5C-8E4100327846}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52A614F8-A6CF-4C60-9F5C-8E4100327846}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52A614F8-A6CF-4C60-9F5C-8E4100327846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{360296C4-CE03-4013-AC87-FE482599C946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{360296C4-CE03-4013-AC87-FE482599C946}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{360296C4-CE03-4013-AC87-FE482599C946}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{360296C4-CE03-4013-AC87-FE482599C946}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
