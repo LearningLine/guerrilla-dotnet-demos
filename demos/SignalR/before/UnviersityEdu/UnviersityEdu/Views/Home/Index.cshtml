@@ -1,0 +1,30 @@
+﻿@model UnviersityEdu.Objects.Course[]
+@{
+	ViewBag.Title = "Home Page";
+}
+
+
+<div class="row">
+	<h2>Courses</h2>
+
+	<div class="course">
+		<div class="credits">Credits</div>
+		<div class="title">Title</div>
+		<div class="spaces">Spaces</div>
+		<div class="enroll"></div>
+	</div>
+
+	@foreach (var item in Model)
+	{
+		<div class="course" id="course_@(item.CourseID)">
+			<div class="credits">@item.Credits </div>
+			<div class="title">@item.Title</div>
+			<div class="spaces">_</div>
+			<div class="enroll">
+				<a href="#enroll"
+				   class="btn btn-success enroll-btn"
+				   id="@(item.CourseID)">enroll</a>
+			</div>
+		</div>
+	}
+</div>
