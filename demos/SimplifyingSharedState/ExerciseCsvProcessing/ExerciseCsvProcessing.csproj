@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{16715B9D-524C-431F-8B3A-4E778C6BF193}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ExerciseCsvProcessing</RootNamespace>
+    <AssemblyName>ExerciseCsvProcessing</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WeatherEntry.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Data\aberporth.csv" />
+    <None Include="Data\armagh.csv" />
+    <None Include="Data\ballypatrick.csv" />
+    <None Include="Data\bradford.csv" />
+    <None Include="Data\braemar.csv" />
+    <None Include="Data\camborne.csv" />
+    <None Include="Data\cambridge.csv" />
+    <None Include="Data\cardiff.csv" />
+    <None Include="Data\chivenor.csv" />
+    <None Include="Data\cwmystwyth.csv" />
+    <None Include="Data\dunstaffnage.csv" />
+    <None Include="Data\durham.csv" />
+    <None Include="Data\eastbourne.csv" />
+    <None Include="Data\eskdalemuir.csv" />
+    <None Include="Data\heathrow.csv" />
+    <None Include="Data\hurn.csv" />
+    <None Include="Data\lerwick.csv" />
+    <None Include="Data\leuchars.csv" />
+    <None Include="Data\lowestoft.csv" />
+    <None Include="Data\manston.csv" />
+    <None Include="Data\nairn.csv" />
+    <None Include="Data\newtonrigg.csv" />
+    <None Include="Data\oxford.csv" />
+    <None Include="Data\paisley.csv" />
+    <None Include="Data\ringway.csv" />
+    <None Include="Data\rossonwye.csv" />
+    <None Include="Data\shawbury.csv" />
+    <None Include="Data\sheffield.csv" />
+    <None Include="Data\southampton.csv" />
+    <None Include="Data\stornoway.csv" />
+    <None Include="Data\suttonbonington.csv" />
+    <None Include="Data\tiree.csv" />
+    <None Include="Data\valley.csv" />
+    <None Include="Data\waddington.csv" />
+    <None Include="Data\whitby.csv" />
+    <None Include="Data\wickairport.csv" />
+    <None Include="Data\yeovilton.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSVFileProcessing\CSVFileProcessing.csproj">
+      <Project>{6b1abd28-691c-4c3e-abe6-93fd59f841e5}</Project>
+      <Name>CSVFileProcessing</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
