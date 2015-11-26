@@ -6,8 +6,8 @@ namespace UnviersityEdu.Objects
 {
     public interface ICourseRepository : IRepository<Course>
     {
-        IEnumerable<Course> GetActiveCourses();
-        IEnumerable<Course> GetCoursesByPage(int page, int amount);
+        //IEnumerable<Course> GetActiveCourses();
+        //IEnumerable<Course> GetCoursesByPage(int page, int amount);
 
     }
 
