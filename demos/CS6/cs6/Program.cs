@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
-using static System.Console;
+
+//using static System.Console;
+//using static System.Diagnostics.Debug;
 
 namespace cs6
 {
@@ -51,34 +52,49 @@ namespace cs6
 
 		private static void Main(string[] args)
 		{
-			ILogger log = new NullLogger();
+			//ILogger log = new NullLogger();
 
 			var first = "Rich";
 			var last = "Blewett";
 
-			var fullName = string.Format("{0} {1}", first, last);
-			if (loggerConfig != null && loggerConfig.Logger != null)
-			{
-				if (loggerConfig.Logger != null)
-				{
-					log = loggerConfig.Logger;
-				}
-				else
-				{
-					log = new NullLogger();
-				}
-			}
+			var fullName2 = string.Format("{0} {1}", first, last);
+			var fullName = $"My name is {first.ToUpper()} {last}";
+
+			Console.WriteLine(fullName);
+
+			//bool needsNullLogger = loggerConfig == null ||
+			//	loggerConfig.Logger == null;
+
+			//bool needsNullLogger = loggerConfig?.Logger == null;
+
+			var log = loggerConfig?.Logger ?? new NullLogger();
+
+
+			//if (loggerConfig != null && loggerConfig.Logger != null)
+			//{
+			//	if (loggerConfig.Logger != null)
+			//	{
+			//		log = loggerConfig.Logger;
+			//	}
+			//	else
+			//	{
+			//		log = new NullLogger();
+			//	}
+			//}
 
 			var p = new Person(log);
 
-			WriteLine(p);
+			Console.WriteLine(p);
 			p.Age = 21;
 
-			WriteLine(p.IsAdult);
+			Console.WriteLine(p.IsAdult);
 
-			WriteLine(p.IsOlderThan(20));
+			Console.WriteLine();
+			Console.WriteLine();
+			Console.WriteLine();
+			Console.WriteLine(p.IsOlderThan(20));
 
-			WriteLine(p);
+			Console.WriteLine(p);
 		}
 
 		private static async void DoStuff(ILogger logger)
@@ -86,24 +102,31 @@ namespace cs6
 			try
 			{
 				DecryptMaster();
-
 				ApplyDataFixups();
-			}
-			catch (Win32Exception x)
-			{
-				if (x.NativeErrorCode == (int) Win32Error.AccessDenied)
-				{
-					// ...
-				}
-				else
-				{
-					throw;
-				}
-			}
-			finally
-			{
 				ProtectMaster();
 			}
+			catch
+			{
+				ProtectMaster();
+				throw;
+			}
+
+
+			//try
+			//{
+			//	DecryptMaster();
+
+			//	ApplyDataFixups();
+			//}
+			//catch (Win32Exception x)
+			//when(x.NativeErrorCode == (int)Win32Error.AccessDenied)
+			//{
+			//	// ...
+			//}
+			//finally
+			//{
+			//	ProtectMaster();
+			//}
 		}
 
 		private static void ApplyDataFixups()
@@ -150,39 +173,63 @@ namespace cs6
 	internal class Person
 	{
 		private ILogger _log;
+		private int age = 25;
 
-		public Person(ILogger logger)
+		public Person(ILogger theLogger)
 		{
-			if (logger == null)
+			if (theLogger == null)
 			{
-				throw new ArgumentNullException(nameof(logger));
+				//throw new ArgumentException($"logger is {logger}");
+				throw new ArgumentNullException(nameof(theLogger));
 			}
-			this._log = logger;
+			this._log = theLogger;
+			WriteLine("We made a person!");
 		}
 
-		public Person()
-			: this(new NullLogger())
+		public Person() : this(new NullLogger())
 		{
 		}
 
-		public string Name { get; set; } = "not set";
-		public DateTime LastUpdated { get; private set; } = DateTime.Now;
-		public int Age { get; set; }
+		public string Name { get; set; }
+		public DateTime LastUpdated { get; } = DateTime.Now;
 
-		public bool IsAdult
+		public int Age
 		{
-			get { return Age >= 18; }
+			get { return age; }
+			set
+			{
+				age = value;
+				OnIsAdult?.Invoke(this, EventArgs.Empty);
+			}
 		}
 
-		public override string ToString()
+		public bool IsAdult => Age >= 18;
+
+		public void WriteLine(string s)
 		{
-			return string.Format("{0} is {1}", Name, Age);
+			Console.WriteLine("This is the: " + s);
 		}
 
-		public bool IsOlderThan(int testAge)
-		{
-			return Age > testAge;
-		}
+		public event EventHandler OnIsAdult;
+
+		//public bool IsAdult
+		//{
+		//	get { return Age >= 18; }
+		//}
+
+		public override string ToString() => $"{Name} is {Age}";
+
+		//public override string ToString()
+		//{
+		//	return $"{Name} is {Age}";
+		//}
+
+		public bool IsOlderThan(int testAge) => Age > testAge;
+		//}
+		//	return Age > testAge;
+		//{
+
+		//public bool IsOlderThan(int testAge)
 	}
 
 	internal interface ILogger
