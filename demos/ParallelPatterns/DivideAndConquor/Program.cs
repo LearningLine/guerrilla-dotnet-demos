@@ -24,15 +24,16 @@ namespace ParallelSorting
 
             Console.WriteLine("Sorting..");
 
+            ExerciseSorter(items, ParallelQuickSort);
             ExerciseSorter(items, QuickSort);
            
         }
 
-        private static void ExerciseSorter<T>(List<T> items , Func<List<T>,int,List<T>> sorter) where T:IComparable<T>
+        private static void ExerciseSorter<T>(List<T> items , Func<List<T>,List<T>> sorter) where T:IComparable<T>
         {
             Stopwatch timer = Stopwatch.StartNew();
 
-            List<T> sorted = sorter(items,0);
+            List<T> sorted = sorter(items);
 
             Console.WriteLine("Sorted {0} took {1}", sorter.Method.Name, timer.Elapsed);
 
@@ -51,20 +52,39 @@ namespace ParallelSorting
 
         private static  Random rnd = new Random();
 
-        public static List<T> QuickSort<T>( List<T> items , int depth ) where T:IComparable<T>
+        public static List<T> QuickSort<T>( List<T> items ) where T:IComparable<T>
         {
             if (items.Count <= 1) return items;
 
             int randomPositon = rnd.Next(items.Count);
             T pivotValue = items[randomPositon];
 
-            List<T> result = QuickSort<T>(items.Where(i => i.CompareTo(pivotValue) < 0).ToList(),depth+1);
+            List<T> result = QuickSort<T>(items.Where(i => i.CompareTo(pivotValue) < 0).ToList());
             result.AddRange(items.Where(i => i.Equals(pivotValue)));
-            result.AddRange( QuickSort<T>( items.Where( i => i.CompareTo(pivotValue) > 0 ).ToList(),depth+1 ) );
+            result.AddRange( QuickSort<T>( items.Where( i => i.CompareTo(pivotValue) > 0 ).ToList()) );
 
 
             return result;
         }
+
+        public static List<T> ParallelQuickSort<T>(List<T> items) where T : IComparable<T>
+        {
+            if (items.Count <= 1) return items;
+
+            int randomPositon = rnd.Next(items.Count);
+            T pivotValue = items[randomPositon];
+
+            Func<List<T>, List<T>> sortFunction = items.Count > 5000 ? (Func < List<T>, List< T >> )ParallelQuickSort : QuickSort;
+
+            Task<List<T>> lhsTask = Task.Run(() => sortFunction(items.Where(i => i.CompareTo(pivotValue) < 0).ToList()));
+            Task<List<T>> middleTask = Task.Run(() => items.Where(i => i.Equals(pivotValue)).ToList());
+            Task<List<T>> rhsTask = Task.Run(() => sortFunction(items.Where(i => i.CompareTo(pivotValue) > 0).ToList()));
+
+            return lhsTask.Result
+                          .Concat(middleTask.Result)
+                          .Concat(rhsTask.Result).ToList();
+        }
+
 
 
         #region hidden

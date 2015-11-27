@@ -33,7 +33,7 @@ namespace MontiCarlo
             for (int nRun = 0; nRun < nRuns; nRun++)
             {
                 Console.Write("{0}", nRun);
-                int nCalcs = Environment.ProcessorCount;
+                int nCalcs = 8;
 
                 Task<Trip>[] candidates = new Task<Trip>[nCalcs];
 

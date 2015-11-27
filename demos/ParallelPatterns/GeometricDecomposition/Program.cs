@@ -9,12 +9,58 @@ using System.Diagnostics;
 
 namespace GeometricDecomposition
 {
+    public class BarrierSlim
+    {
+        private readonly int count;
+        private volatile int barrierCount;
+        private object guard = new object();
+
+        public BarrierSlim(int count)
+        {
+            this.count = count;
+            barrierCount = count;
+        }
+
+        public void SignalAndWait()
+        {
+             Interlocked.Decrement(ref barrierCount);
+
+           
+            while (barrierCount > 0)
+            {
+
+            }
+
+
+            Interlocked.Increment(ref barrierCount);
+
+
+
+            //lock (guard)
+            //{
+            //    //if (--barrierCount == 0)
+            //    //{
+            //    //    barrierCount = count;
+            //    //    Monitor.PulseAll(guard);
+
+            //    //}
+            //    //else
+            //    //{
+            //    //    Monitor.Wait(guard);
+            //    //}
+            //}
+
+
+        }
+    }
     class Program
     {
         static void Main(string[] args)
         {
-             RunTemperatureSimulation(SequentialVersion);
+            // RunTemperatureSimulation(SequentialVersion);
              RunTemperatureSimulation(ParallelVersion);
+            RunTemperatureSimulation(SequentialVersion);
+            RunTemperatureSimulation(ParallelVersion);
         }
 
         private static void RunTemperatureSimulation( Func<Material, int, Material> simulation)
@@ -78,51 +124,48 @@ namespace GeometricDecomposition
             return material;
         }
 
-
-        
-
         private static Material ParallelVersion(Material material, int iterations)
         {
-            int nSegments =  Cores.CoresInUse;
-            double dx = 1.0 / (double)material.Width;
-            double dt = 0.5 * dx * dx;
-
             Material[] materials = new Material[2];
             materials[0] = material;
             materials[1] = new Material(materials[0].Width);
             materials[1][0] = material[0];
             materials[1][material.Width - 1] = material[material.Width - 1];
 
-            Range range = new Range() { Start = 1, End = material.Width - 1 };
-            Task[] tasks = new Task[nSegments];
+            double dx = 1.0 / (double)material.Width;
+            double dt = 0.5 * dx * dx;
 
-            int nTask = 0;
+            var range = new Range {Start = 1, End = material.Width - 1};
 
-            Barrier barrier = new Barrier(nSegments);
-            foreach (Range chunk in range.CreateSubRanges(nSegments))
+            int nCores = 2;
+            List<Task> tasks = new List<Task>();
+
+            var barry = new BarrierSlim(nCores);
+
+            foreach (Range subRange in range.CreateSubRanges(nCores))
             {
-                Range taskChunk = chunk;
-
-                tasks[nTask++] = Task.Factory.StartNew(() =>
+                tasks.Add(Task.Run(() =>
                 {
                     for (int nIteration = 0; nIteration < iterations; nIteration++)
                     {
-                        Material src = materials[nIteration % 2];
-                        Material dest = materials[(nIteration + 1) % 2];
+                        Material src = materials[nIteration%2];
+                        Material dest = materials[(nIteration + 1)%2];
 
-                        for (int x = taskChunk.Start; x <= taskChunk.End; x++)
+                        for (int x = subRange.Start; x <= subRange.End; x++)
                         {
-                            dest[x] = src[x] + (dt / (dx * dx)) * (src[x + 1] - 2 * src[x] + src[x - 1]);
+                            dest[x] = src[x] + (dt/(dx*dx))*(src[x + 1] - 2*src[x] + src[x - 1]);
                         }
 
-                        barrier.SignalAndWait();
-                    }     
-                });
+                        barry.SignalAndWait();
+                    }
+                }));
             }
- 
-            Task.WaitAll(tasks);
 
-            return materials[0];
+            Task.WaitAll(tasks.ToArray());
+
+            return material;
         }
     }
+
+
 }

@@ -38,12 +38,12 @@ namespace PLINQ
         private static void OddEven()
         {
             IEnumerable<int> numbers =
-                   new EnumerableBuffer<int>( Numbers(50000000) );
+                   new EnumerableBuffer<int>( Numbers(50000000) ).ToArray();
                
             Console.Write("Filtering..");
             Stopwatch timer = Stopwatch.StartNew();
 
-            var evenNumbers = (from number in numbers
+            var evenNumbers = (from number in numbers.AsParallel()
                                where number % 2 == 0
                                select number).ToArray();
 

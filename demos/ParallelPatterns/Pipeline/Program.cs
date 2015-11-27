@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Exocortex.DSP;
 using System.IO;
+using System.Threading.Tasks.Dataflow;
 
 namespace MyFFT
 {
@@ -23,11 +24,12 @@ namespace MyFFT
 
             while (true)
             {
-                TimeIt(SequentialVersion);
+                TimeIt(LinqVersion);
+                TimeIt(PLinqVersion);
                 
              
                    
-                //CompareFiles(OUTPUT_FILENAME, LINQ_OUTPUT_FILENAME);
+                CompareFiles(PLINQ_OUTPUT_FILENAME, LINQ_OUTPUT_FILENAME);
             }
         }
 
@@ -70,6 +72,48 @@ namespace MyFFT
             }
         }
 
+        private static void ParallelVersion()
+        {
+            using (Stream output = File.Create(OUTPUT_FILENAME))
+            {
+                byte[] outputBuffer = new byte[1024*4];
+
+                TransformManyBlock<string, ComplexF[]> loadBlock
+                    = new TransformManyBlock<string, ComplexF[]>(f => LoadBlocks(f, outputBuffer.Length));
+
+                TransformBlock<ComplexF[], ComplexF[]> processingBlock
+                    = new TransformBlock<ComplexF[], ComplexF[]>(complexBuffer =>
+                    {
+                        ComplexF[] result = Fourier.FFT(complexBuffer, FourierDirection.Forward);
+
+                        // Stage 3
+                        result = LowPassFilter(result);
+
+                        // Stage 4
+                        return Fourier.FFT(result, FourierDirection.Backward);
+                    }, new ExecutionDataflowBlockOptions {MaxDegreeOfParallelism = 6});
+
+                ActionBlock<ComplexF[]> outputBlock = new ActionBlock<ComplexF[]>(complexBuffer =>
+                {
+                    WriteComplexBuffer(output, complexBuffer);
+                });
+
+                DataflowLinkOptions linkOptions = new DataflowLinkOptions
+                {
+                    PropagateCompletion = true
+                };
+
+                loadBlock.LinkTo(processingBlock, linkOptions);
+                processingBlock.LinkTo(outputBlock, linkOptions);
+
+                loadBlock.Post(INPUT_FILENAME);
+
+                loadBlock.Complete();
+
+                outputBlock.Completion.Wait();
+            }              
+        }
+
         private static void SequentialVersion()
         {
             using (Stream output = File.Create(OUTPUT_FILENAME))
@@ -95,6 +139,7 @@ namespace MyFFT
         }
 
 
+
         private static void LinqVersion()
         {
             byte[] outputBuffer = new byte[1024 * 4];
@@ -106,6 +151,27 @@ namespace MyFFT
                     .Select(cb => Fourier.FFT(cb, FourierDirection.Backward));
 
             using (Stream output = File.Create(LINQ_OUTPUT_FILENAME))
+            {
+                foreach (ComplexF[] complexBuffer in filter)
+                {
+                    WriteComplexBuffer(output, complexBuffer);
+                }
+            }
+        }
+
+        private static void PLinqVersion()
+        {
+            byte[] outputBuffer = new byte[1024 * 4];
+
+            var filter =
+                LoadBlocks(INPUT_FILENAME, outputBuffer.Length)
+                            .AsParallel()
+                            .AsOrdered()
+                    .Select(cb => Fourier.FFT(cb, FourierDirection.Forward))
+                    .Select(cb => LowPassFilter(cb))
+                    .Select(cb => Fourier.FFT(cb, FourierDirection.Backward));
+
+            using (Stream output = File.Create(PLINQ_OUTPUT_FILENAME))
             {
                 foreach (ComplexF[] complexBuffer in filter)
                 {
