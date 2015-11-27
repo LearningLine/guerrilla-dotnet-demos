@@ -41,4 +41,5 @@ namespace UnviersityEdu.Hubs
         public string Title { get; set; }
         public int RemainingSeats { get; set; }
     }
+
 }
