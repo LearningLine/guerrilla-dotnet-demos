@@ -37,8 +37,17 @@ namespace UnviersityEdu.Hubs
 			if (enrollmentDictionary.Count > 0)
 				return;
 
-			var ctx = new SchoolContext();
-			var courses = ctx.Courses.OrderBy(c => c.Title).ToList();
+			//var ctx = new SchoolContext();
+			//var courses = ctx.Courses.OrderBy(c => c.Title).ToList();
+
+			var courses = new Course[]
+			{
+				new Course() {CourseID=1, Credits = 3, Title = "Differential Equations"}, 
+				new Course() {CourseID=2, Credits = 3, Title = "Linear Algebra"}, 
+				new Course() {CourseID=3, Credits = 5, Title = "Calculus I"}, 
+				new Course() {CourseID=4, Credits = 5, Title = "Calculus II"}, 
+				new Course() {CourseID=5, Credits = 5, Title = "Calculus III"}, 
+			}.ToList();
 			courses.ForEach(c => courseDictionary.Add(c.CourseID, c));
 
 			foreach (var c in courses)

@@ -30,7 +30,7 @@ namespace TheNetClient
 				Console.WriteLine("Id\tSlots\tName");
 				foreach (Status s in e)
 				{
-					Console.WriteLine("{0}\t{1}\t{2}", s.id, 20- s.enrollments, s.course);
+					Console.WriteLine("{0}\t{1}\t{2}", s.id, 200 - s.enrollments, s.course);
 				}
 				Console.WriteLine();
 			});

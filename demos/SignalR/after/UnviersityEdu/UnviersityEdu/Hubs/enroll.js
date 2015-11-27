@@ -10,7 +10,7 @@
 			var c = this;
 			var srt = "course_" + c.id;
 			console.log(srt);
-			var count = 20 - c.enrollments;
+			var count = 200 - c.enrollments;
 			$(".spaces", "#" + srt).text(count);
 		});
 
